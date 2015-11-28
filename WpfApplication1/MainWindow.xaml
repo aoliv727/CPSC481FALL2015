@@ -36,7 +36,7 @@
                         <TabItem Header="WaitList" FontWeight="Bold">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="335">
-                                    <Border BorderBrush="Black" BorderThickness="2" Height="650" Width="325" Canvas.Top="8" Canvas.Left="10"/>
+                                    <Border BorderBrush="Black" BorderThickness="2" Height="650" Width="299" Canvas.Top="8" Canvas.Left="10"/>
                                     <ScrollBar HorizontalAlignment="Left" Height="648" VerticalAlignment="Top" Width="26" Canvas.Left="309" Canvas.Top="10"/>
                                 </Canvas>
                             </Grid>
