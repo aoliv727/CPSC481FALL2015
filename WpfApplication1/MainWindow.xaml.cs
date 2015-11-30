@@ -23,6 +23,14 @@ namespace WpfApplication1
         public MainWindow()
         {
             InitializeComponent();
+            int[] array = { 3, 4 };
+            String[] sarr = { "M", "W", "F" };
+
+            for (int i = 0; i < 20; i++)
+            {
+                CourseBlock course = new CourseBlock(99, 9, "Abigail oliver", "CPSC 101", "Intro To Life", sarr, array, "Lecture", "I wills teach you.");
+                this.courses.Children.Add(course);
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
