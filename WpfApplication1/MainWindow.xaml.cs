@@ -36,7 +36,6 @@ namespace WpfApplication1
             int seats, waitSeat, courseNum;
             String prof, course, courseName, type, details;
             String[] days;
-            char[] splitter = { ',' };
             int[] times;
 
             System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
@@ -52,8 +51,8 @@ namespace WpfApplication1
                 courseName = file.ReadLine();
                 type = file.ReadLine();
                 prof = file.ReadLine();
-                days = file.ReadLine().Split(splitter);
-                String[] arr = file.ReadLine().Split(splitter);
+                days = file.ReadLine().Split(',');
+                String[] arr = file.ReadLine().Split(',');
                 times = new int[arr.Length];
                 for (int j = 0; j < arr.Length; j++)
                 {
