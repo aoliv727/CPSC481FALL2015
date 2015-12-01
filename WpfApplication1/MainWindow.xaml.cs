@@ -20,16 +20,47 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
+        private CourseBlock[] allCourses;
         public MainWindow()
         {
             InitializeComponent();
-            int[] array = { 3, 4 };
-            String[] sarr = { "M", "W", "F" };
-
-            for (int i = 0; i < 20; i++)
+            fileReader();
+            for (int i = 0; i < allCourses.Length; i++)
             {
-                CourseBlock course = new CourseBlock(99, 9, "Abigail oliver", "CPSC 101", "Intro To Life", sarr, array, "Lecture", "I wills teach you.");
-                this.courses.Children.Add(course);
+                this.courses.Children.Add(allCourses[i]);
+            }
+        }
+
+        private void fileReader()
+        {
+            int seats, waitSeat, courseNum;
+            String prof, course, courseName, type, details;
+            String[] days;
+            char[] splitter = { ',' };
+            int[] times;
+
+            System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
+            int numCourses = int.Parse(file.ReadLine());
+            allCourses = new CourseBlock [numCourses];
+
+            for (int i = 0; i < numCourses; i++)
+            {
+                seats = int.Parse(file.ReadLine());
+                waitSeat = int.Parse(file.ReadLine());
+                course = file.ReadLine();
+                courseNum = int.Parse(file.ReadLine());
+                courseName = file.ReadLine();
+                type = file.ReadLine();
+                prof = file.ReadLine();
+                days = file.ReadLine().Split(splitter);
+                String[] arr = file.ReadLine().Split(splitter);
+                times = new int[arr.Length];
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    times[j] = int.Parse(arr[j]);
+                }
+                details = file.ReadLine();
+                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum);
             }
         }
 

@@ -24,6 +24,7 @@ namespace WpfApplication1
         private int waitSeat;
         private String prof;
         private String course;
+        private int courseNum;
         private String courseName;
         private String[] days;
         private int[] times;
@@ -32,7 +33,7 @@ namespace WpfApplication1
         private Boolean isErolled;
         private Boolean isWaitlisted;
 
-        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details)
+        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum)
         {
             String printDays = null;
             InitializeComponent();
@@ -46,6 +47,7 @@ namespace WpfApplication1
             this.times = times;
             this.type = type;
             this.details = details;
+            this.courseNum = courseNum;
 
             // Input all relavent values into the GUI
             courselbl.Content = this.course;
@@ -58,6 +60,7 @@ namespace WpfApplication1
             }
             timeslbl.Content = printDays + "  " + times[0].ToString() + " - " + times[1].ToString();
             detailslbl.ToolTip = details;
+            courseNumlbl.Content = courseNum;
 
             //NOT YET IMPLEMENTED A TRIANGLE FOR WAITLIST FF2379CF ("#FF4CD62D")
 
@@ -65,13 +68,13 @@ namespace WpfApplication1
             if (seats == 100 && waitSeat == 10)
             {
                 square.Visibility = System.Windows.Visibility.Visible;
-                border.BorderBrush = Brushes.AliceBlue;
+                border.BorderBrush = Brushes.Blue;
             }
             else if (seats == 100 && waitSeat != 10)
             {
                 square.Visibility = System.Windows.Visibility.Visible;
                 WaitlistBtn.Visibility = System.Windows.Visibility.Visible;
-                border.BorderBrush = Brushes.AliceBlue;
+                border.BorderBrush = Brushes.Blue;
             }
             else
             {

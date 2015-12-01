@@ -1,0 +1,31 @@
+﻿3
+100
+10
+CPSC
+431
+Intro
+Lec
+Ehud
+M,F,T
+4,6
+STUFF AND THINGS
+34
+0
+CPSC
+560
+Second
+Lec
+Brad
+M,W
+6,7
+STUFF AND THINGS
+100
+7
+CPSC
+100
+Third
+TUT 01
+Sammy
+R,F
+1,2
+STUFF AND THINGS
