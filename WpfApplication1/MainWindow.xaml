@@ -33,7 +33,7 @@
 
                                 <!-- Search result canvas -->
                                 <Canvas HorizontalAlignment="Left" Height="479" Margin="10,183,0,0" VerticalAlignment="Top" Width="326">
-                                    <ScrollViewer Height="456" Width="316" Canvas.Top="13" BorderBrush="Black" BorderThickness="2">
+                                    <ScrollViewer x:Name="scrollViewer" Height="456" Width="316" Canvas.Top="13" BorderBrush="Black" BorderThickness="2">
                                         <StackPanel x:Name="courses" Height="auto" Width="auto"></StackPanel>
                                     </ScrollViewer>
 

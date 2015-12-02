@@ -33,6 +33,22 @@ namespace WpfApplication1
         private Boolean isErolled;
         private Boolean isWaitlisted;
 
+        public CourseBlock(CourseBlock c)
+        {
+            this.seats = c.seats;
+            this.waitSeat = c.waitSeat;
+            this.prof = c.prof;
+            this.course = c.course;
+            this.courseNum = c.courseNum;
+            this.courseName = c.courseName;
+            this.days = c.days;
+            this.times = c.times;
+            this.type = c.type;
+            this.details = c.details;
+            this.isErolled = c.isErolled;
+            this.isWaitlisted = c.isWaitlisted;
+        }
+
         public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum)
         {
             String printDays = null;
