@@ -3,7 +3,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Course Registration System" Height="800" Width="1200">
     <Grid>
-        <TabControl HorizontalAlignment="Left" Height="769" VerticalAlignment="Top" Width="1192">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="259*"/>
+            <RowDefinition Height="510*"/>
+        </Grid.RowDefinitions>
+        <TabControl HorizontalAlignment="Left" Height="769" VerticalAlignment="Top" Width="1192" Grid.RowSpan="2">
             <!-- Fall Tab -->
             <TabItem Header="FALL - 2015" FontWeight="Bold">
 
@@ -19,21 +23,24 @@
                             <Grid Background="White" Margin="0,0,-1,0">
                                 <Canvas HorizontalAlignment="Left" Height="163" VerticalAlignment="Top" Width="326" Margin="10,10,0,0">
                                     <Border BorderBrush="Black" BorderThickness="2" Height="163" Width="326"/>
-                                    <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="27" Canvas.Left="170" Canvas.Top="90"/>
+                                    <TextBox x:Name="S_courseNum" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="27" Canvas.Left="170" Canvas.Top="90"/>
                                     <Label Content="Search Options: " Height="31" Canvas.Left="10" Canvas.Top="10" Width="231" FontSize="18" FontFamily="Times New Roman" FontWeight="Normal">
                                         <Label.Effect>
                                             <DropShadowEffect/>
                                         </Label.Effect>
                                     </Label>
                                     <Label Content="Subject : " Height="25" Canvas.Left="10" Canvas.Top="53" Width="76"/>
-                                    <ComboBox Height="25" Canvas.Left="74" Canvas.Top="57" Width="187"/>
+                                    <ComboBox x:Name="S_Subject" Height="25" Canvas.Left="74" Canvas.Top="57" Width="187" SelectionChanged="ComboBox_SelectionChanged_1">
+                                        <ComboBoxItem Content="CPSC"/>
+                                        <ComboBoxItem Content="STAT"/>
+                                    </ComboBox>
                                     <Label Content="Course Contains Number : " Height="23" Canvas.Left="10" Canvas.Top="87" Width="167"/>
-                                    <Button Content="SEARCH" Height="27" Canvas.Left="128" Canvas.Top="128" Width="133"/>
+                                    <Button Content="SEARCH" Height="27" Canvas.Left="128" Canvas.Top="128" Width="133" Click="Button_Click_3"/>
                                 </Canvas>
 
                                 <!-- Search result canvas -->
                                 <Canvas HorizontalAlignment="Left" Height="479" Margin="10,183,0,0" VerticalAlignment="Top" Width="326">
-                                    <ScrollViewer Height="456" Width="316" Canvas.Top="13" BorderBrush="Black" BorderThickness="2">
+                                    <ScrollViewer Height="456" Width="316" Canvas.Top="10" BorderBrush="Black" BorderThickness="2" Canvas.Left="10">
                                         <StackPanel x:Name="courses" Height="auto" Width="auto"></StackPanel>
                                     </ScrollViewer>
 
@@ -58,19 +65,28 @@
                                     </ComboBox>
                                     <Label Content="Search for course to swap with:" Height="28" Canvas.Left="10" Canvas.Top="48" Width="315" FontSize="14"/>
 
+                                    <Canvas HorizontalAlignment="Left" Height="411" VerticalAlignment="Top" Width="326" Canvas.Left="10" Canvas.Top="251">
+                                        <ScrollViewer Height="350" Width="325">
+                                            <StackPanel x:Name="SwapCourses" Height="auto" Width="auto"></StackPanel>
+                                        </ScrollViewer>
+                                    </Canvas>
+
+
                                 </Canvas>
                                 <Button Content="SWAP" HorizontalAlignment="Left" Height="29" Margin="221,622,0,0" VerticalAlignment="Top" Width="89" FontSize="14" FontWeight="Normal"/>
                                 <Border BorderBrush="Black" BorderThickness="2" Margin="9,80,10,429"/>
-                                <TextBox HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="27" Margin="175,170,0,0"/>
+                                <TextBox x:Name="courseNumSwap" HorizontalAlignment="Left" Height="20" TextWrapping="Wrap" Text="000" VerticalAlignment="Top" Width="27" Margin="175,170,0,0"/>
                                 <Label Content="Search Options: " FontSize="18" FontFamily="Times New Roman" FontWeight="Normal" Margin="15,90,99,551">
                                     <Label.Effect>
                                         <DropShadowEffect/>
                                     </Label.Effect>
                                 </Label>
                                 <Label Content="Subject : " Margin="15,133,254,514"/>
-                                <ComboBox Margin="79,137,79,510"/>
+                                <ComboBox x:Name="SubjectSwap" Margin="79,137,79,510">
+                                    <ComboBoxItem Content="CPSC"/>
+                                </ComboBox>
                                 <Label Content="Course Contains Number : " Margin="15,167,163,482"/>
-                                <Button Content="SEARCH" Margin="133,208,79,437"/>
+                                <Button Content="SEARCH" Margin="133,208,79,437" Click="Button_Click_4"/>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Switch Tutorial" FontWeight="Bold">

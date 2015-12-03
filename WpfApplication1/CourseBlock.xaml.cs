@@ -88,6 +88,55 @@ namespace WpfApplication1
 
         }
 
+        public string getCourse()
+        {
+            return this.course;
+        }
+
+        public int getCourseNum()
+        {
+            return this.courseNum;
+        }
+        public int getSeats()
+        {
+            return this.seats;
+        } 
+
+        public int getWaitSeat ()
+        {
+            return this.waitSeat;
+        }
+
+        public string getProf()
+        {
+            return this.prof;
+        }
+
+        public string getCourseName()
+        {
+            return this.courseName;
+        }
+
+        public string[] getDays()
+        {
+            return this.days;
+        }
+
+        public int[] getTimes()
+        {
+            return this.times;
+        }
+
+        public string getType()
+        {
+            return this.type;
+        }
+
+       public string getDetails()
+        {
+            return this.details;
+        }
+
         public void setEnrolled(Boolean isEnrolled)
         {
             this.isErolled = isEnrolled;
