@@ -21,6 +21,8 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
+        private CourseBlock[] WLCourses = new CourseBlock[0];
+
         public MainWindow()
         {
             InitializeComponent();
@@ -60,7 +62,7 @@ namespace WpfApplication1
                     times[j] = int.Parse(arr[j]);
                 }
                 details = file.ReadLine();
-                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum);
+                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
             }
         }
 
@@ -97,7 +99,7 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if (allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
+                    if ((allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
                     {
                         j++;
                     }
@@ -109,12 +111,12 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if (allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
                     {
                         CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(),
-                                                            allCourses[i].getCourseNum());
+                                                            allCourses[i].getCourseNum(), this);
                         S_courses[k] = temp;
                         k++;
                     }
@@ -128,9 +130,38 @@ namespace WpfApplication1
             
         }
 
+        public void AddtoWaitList(int seats, int waitSeat, string prof, string course, string courseName, string[] days, int[] times, string type, string details, int courseNum)
+        {
+           
+            CourseBlock temp = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
+            temp.WaitlistBtn.Visibility= System.Windows.Visibility.Hidden;
+            temp.triangle.Visibility = System.Windows.Visibility.Visible;
+            temp.square.Visibility = System.Windows.Visibility.Hidden;
+            Array.Resize<CourseBlock>(ref WLCourses, WLCourses.Length +1);
+            WLCourses[WLCourses.Length - 1] = temp;
+            this.WL_List.Children.Clear();
+
+            for (int i = 0; i < WLCourses.Length; i++)
+            {
+                this.WL_List.Children.Add(WLCourses[i]);
+            }
+
+
+            for (int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i] == temp)
+                {
+                    
+                        allCourses[i].setisWaitlisted(true); 
+                    
+                }
+            }
+
+        }
+
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
-
+            
         }
 
         private void Button_Click_4(object sender, RoutedEventArgs e)
@@ -146,7 +177,7 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if (allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
                     {
                         j++;
                     }
@@ -159,12 +190,12 @@ namespace WpfApplication1
                 if (allCourses[i].getCourse() == course)
                 {
                    
-                    if (allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) 
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised())) 
                     {
                         CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(), 
-                                                            allCourses[i].getCourseNum());
+                                                            allCourses[i].getCourseNum(), this);
                         S_courses[k] = temp;
                         k++;
                     }

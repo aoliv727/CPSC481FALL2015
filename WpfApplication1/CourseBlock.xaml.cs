@@ -20,6 +20,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class CourseBlock : UserControl
     {
+        private MainWindow screen;
         private int seats;
         private int waitSeat;
         private String prof;
@@ -33,11 +34,12 @@ namespace WpfApplication1
         private Boolean isErolled;
         private Boolean isWaitlisted;
 
-        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum)
+        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
         {
             String printDays = null;
             InitializeComponent();
             // Set all the private Variables
+            this.screen = screen;
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
@@ -48,6 +50,7 @@ namespace WpfApplication1
             this.type = type;
             this.details = details;
             this.courseNum = courseNum;
+            this.isWaitlisted = false;
 
             // Input all relavent values into the GUI
             courselbl.Content = this.course;
@@ -62,10 +65,13 @@ namespace WpfApplication1
             detailslbl.ToolTip = details;
             courseNumlbl.Content = courseNum;
 
-            //NOT YET IMPLEMENTED A TRIANGLE FOR WAITLIST FF2379CF ("#FF4CD62D")
-
-
-            if (seats == 100 && waitSeat == 10)
+           if(isWaitlisted)
+            {
+                triangle.Visibility = System.Windows.Visibility.Visible;
+                square.Visibility = System.Windows.Visibility.Hidden;
+                WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            }
+           else if (seats == 100 && waitSeat == 10)
             {
                 square.Visibility = System.Windows.Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
@@ -85,7 +91,11 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            triangle.Visibility = System.Windows.Visibility.Visible;
+            square.Visibility = System.Windows.Visibility.Hidden;
+            WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            isWaitlisted = true;
+            screen.AddtoWaitList(this.seats, this.waitSeat, this.prof, this.course, this.courseName, this.days, this.times, this.type, this.details, this.courseNum);
         }
 
         public string getCourse()

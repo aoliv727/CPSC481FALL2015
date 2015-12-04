@@ -49,18 +49,21 @@
                             </Grid>
                         </TabItem>
                         <!-- WaitList -->
-                        <TabItem Header="WaitList" FontWeight="Bold">
+                        <TabItem Header="WaitList" FontWeight="Bold" Height="22" VerticalAlignment="Top">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="335">
-                                    <Border BorderBrush="Black" BorderThickness="2" Height="650" Width="299" Canvas.Top="8" Canvas.Left="10"/>
-                                    <ScrollBar HorizontalAlignment="Left" Height="648" VerticalAlignment="Top" Width="26" Canvas.Left="309" Canvas.Top="10"/>
+
+
                                 </Canvas>
+                                <ScrollViewer HorizontalAlignment="Left" Height="670" VerticalAlignment="Top" Width="345">
+                                    <StackPanel x:Name="WL_List"/>
+                                </ScrollViewer>
                             </Grid>
                         </TabItem>
                         <TabItem Header="Swap" FontWeight="Bold">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="603" VerticalAlignment="Top" Width="335">
-                                    <ComboBox Height="24" Canvas.Left="10" Canvas.Top="10" Width="315" SelectionChanged="ComboBox_SelectionChanged">
+                                    <ComboBox x:Name="Swap_combo" Height="24" Canvas.Left="10" Canvas.Top="10" Width="315" SelectionChanged="ComboBox_SelectionChanged">
                                         <ComboBoxItem ContentStringFormat="" IsSelected="True" Content="-- Select course to swap out of--"/>
                                     </ComboBox>
                                     <Label Content="Search for course to swap with:" Height="28" Canvas.Left="10" Canvas.Top="48" Width="315" FontSize="14"/>
@@ -85,7 +88,7 @@
                                 <ComboBox x:Name="SubjectSwap" Margin="79,137,79,510">
                                     <ComboBoxItem Content="CPSC"/>
                                 </ComboBox>
-                                <Label Content="Course Contains Number : " Margin="15,167,163,482"/>
+                                <Label Content="Course Contains Number : " Margin="15,167,163,480"/>
                                 <Button Content="SEARCH" Margin="133,208,79,437" Click="Button_Click_4"/>
                             </Grid>
                         </TabItem>

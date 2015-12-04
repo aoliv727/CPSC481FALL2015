@@ -8,7 +8,9 @@
     <Grid>
         <Grid HorizontalAlignment="Left" Height="146" Margin="0,-1,0,-128" VerticalAlignment="Top" Width="299" Background="White">
             <Canvas HorizontalAlignment="Left" Height="146" Margin="0,-1,0,-145" VerticalAlignment="Top" Width="299" Background="White">
-                <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Height="146" Width="299"/>
+                <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Height="146" Width="299">
+                    <Image x:Name="triangle" HorizontalAlignment="Left" Height="35" Margin="251,11,0,0" VerticalAlignment="Top" Width="37" Source="Untitled.png" Visibility="Hidden"/>
+                </Border>
                 <Label x:Name="courselbl" Content="COURSE" Height="26" Canvas.Top="11" Width="42" Canvas.Left="10"/>
                 <Label x:Name="courseNamelbl" Content="Name" Height="26" Canvas.Left="85" Canvas.Top="10" Width="154"/>
                 <Label x:Name="typelbl" Content="Type" Height="26" Canvas.Left="10" Canvas.Top="37" Width="97"/>
