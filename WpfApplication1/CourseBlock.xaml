@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             Height="146" Width="299" MouseDown="OnMouseDown">
+             Height="146" Width="299" MouseMove="OnMouseMove" GiveFeedback="OnGiveFeedback"  AllowDrop="True">
     <Grid HorizontalAlignment="Left" Height="146" Margin="0,-1,0,-128" VerticalAlignment="Top" Width="299" Background="White">
         <Canvas HorizontalAlignment="Left" Height="146" Margin="0,-1,0,-145" VerticalAlignment="Top" Width="299" Background="White">
             <Border x:Name="border" BorderBrush="Black" BorderThickness="1" Height="146" Width="299"/>

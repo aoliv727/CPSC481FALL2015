@@ -21,16 +21,22 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
-        private CourseBlock toDrag;
+       // private CourseBlock toDrag;
+        private Schedule schedule;
+
 
         public MainWindow()
         {
             InitializeComponent();
+            schedule = new Schedule(this);
             fileReader();
             for (int i = 0; i < allCourses.Length; i++)
             {
                 this.courselist.Children.Add(allCourses[i]);
             }
+            scheduleCanvas.Children.Add(schedule);
+            Canvas.SetLeft(schedule, 10);
+            Canvas.SetTop(schedule, 40);
         }
 
         private void fileReader()
@@ -85,6 +91,8 @@ namespace WpfApplication1
 
         }
 
+        /*
+
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (toDrag == null) { return; }
@@ -93,8 +101,8 @@ namespace WpfApplication1
             int gridChildren = mainGrid.Children.Count;
 
             CourseBlock newToDrag = new CourseBlock(toDrag);
-            mainGrid.Children.Add(newToDrag);
-           // mainGrid.Children.Insert(gridChildren, newToDrag);
+            //mainGrid.Children.Add(newToDrag);
+            mainGrid.Children.Insert(gridChildren, newToDrag);
 
             if (newToDrag.getCaptured())
             {
@@ -109,6 +117,8 @@ namespace WpfApplication1
         {
             this.toDrag = c;
         }
+        */
+
 
     }
 }

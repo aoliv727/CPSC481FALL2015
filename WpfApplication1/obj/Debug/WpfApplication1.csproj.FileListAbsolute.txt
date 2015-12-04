@@ -41,3 +41,5 @@ C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.g.resources
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
+U:\481Project\WpfApplication1\obj\Debug\Schedule.baml
+U:\481Project\WpfApplication1\obj\Debug\Schedule.g.cs

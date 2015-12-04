@@ -33,7 +33,7 @@ namespace WpfApplication1
         private String details;
         private Boolean isErolled;
         private Boolean isWaitlisted;
-        private Boolean captured;
+       // private Boolean captured;
 
         public CourseBlock(CourseBlock c)
         {
@@ -50,10 +50,10 @@ namespace WpfApplication1
             this.isErolled = c.isErolled;
             this.isWaitlisted = c.isWaitlisted;
             this.screen = c.screen;
-            this.captured = c.captured;
-            this.Width = c.Width;
-            this.Height = c.Height;
-            this.Margin = c.Margin;
+           // this.captured = c.captured;
+            //this.Width = c.Width;
+           // this.Height = c.Height;
+           // this.Margin = c.Margin;
         }
 
         public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
@@ -62,7 +62,7 @@ namespace WpfApplication1
             InitializeComponent();
             // Set all the private Variables
             this.screen = screen;
-            this.captured = false;
+            //this.captured = false;
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
@@ -133,6 +133,37 @@ namespace WpfApplication1
             return this.isWaitlisted;
         }
 
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            base.OnMouseMove(e);
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                // Package the data.
+                DataObject data = new DataObject();
+                data.SetData("Object", this);
+
+                // Inititate the drag-and-drop operation.
+                DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
+            }
+        }
+
+        private void OnGiveFeedback(object sender, GiveFeedbackEventArgs e)
+        {
+            base.OnGiveFeedback(e);
+            // These Effects values are set in the drop target's
+            // DragOver event handler.
+           if (e.Effects.HasFlag(DragDropEffects.Move))
+            {
+                Mouse.SetCursor(Cursors.Hand);
+            }
+            else
+            {
+                Mouse.SetCursor(Cursors.No);
+            }
+            e.Handled = true;
+        }
+
+        /*
         public void setCaptured(Boolean captured)
         {
             this.captured = captured;
@@ -142,11 +173,14 @@ namespace WpfApplication1
         {
             return this.captured;
         }
+        
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             captured = true;
             screen.setToDrag(this);
         }
+        */
+
 
     }
 }
