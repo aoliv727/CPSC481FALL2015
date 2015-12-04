@@ -20,6 +20,7 @@ namespace WpfApplication1
     /// </summary>
     public partial class CourseBlock : UserControl
     {
+        private MainWindow screen;
         private int seats;
         private int waitSeat;
         private String prof;
@@ -32,6 +33,7 @@ namespace WpfApplication1
         private String details;
         private Boolean isErolled;
         private Boolean isWaitlisted;
+        private Boolean captured;
 
         public CourseBlock(CourseBlock c)
         {
@@ -47,13 +49,20 @@ namespace WpfApplication1
             this.details = c.details;
             this.isErolled = c.isErolled;
             this.isWaitlisted = c.isWaitlisted;
+            this.screen = c.screen;
+            this.captured = c.captured;
+            this.Width = c.Width;
+            this.Height = c.Height;
+            this.Margin = c.Margin;
         }
 
-        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum)
+        public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
         {
             String printDays = null;
             InitializeComponent();
             // Set all the private Variables
+            this.screen = screen;
+            this.captured = false;
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
@@ -123,5 +132,21 @@ namespace WpfApplication1
         {
             return this.isWaitlisted;
         }
+
+        public void setCaptured(Boolean captured)
+        {
+            this.captured = captured;
+        }
+
+        public Boolean getCaptured()
+        {
+            return this.captured;
+        }
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            captured = true;
+            screen.setToDrag(this);
+        }
+
     }
 }

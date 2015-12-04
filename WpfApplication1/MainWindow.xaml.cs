@@ -21,13 +21,15 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
+        private CourseBlock toDrag;
+
         public MainWindow()
         {
             InitializeComponent();
             fileReader();
             for (int i = 0; i < allCourses.Length; i++)
             {
-                this.courses.Children.Add(allCourses[i]);
+                this.courselist.Children.Add(allCourses[i]);
             }
         }
 
@@ -59,7 +61,7 @@ namespace WpfApplication1
                     times[j] = int.Parse(arr[j]);
                 }
                 details = file.ReadLine();
-                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum);
+                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
             }
         }
 
@@ -81,6 +83,31 @@ namespace WpfApplication1
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (toDrag == null) { return; }
+
+            courselist.Children.Remove(toDrag);
+            int gridChildren = mainGrid.Children.Count;
+
+            CourseBlock newToDrag = new CourseBlock(toDrag);
+            mainGrid.Children.Add(newToDrag);
+           // mainGrid.Children.Insert(gridChildren, newToDrag);
+
+            if (newToDrag.getCaptured())
+            {
+                Thickness margin = (newToDrag.Margin);
+                margin.Left = e.GetPosition(mainGrid).X - (newToDrag.Width / 2);
+                margin.Top = e.GetPosition(mainGrid).Y - (newToDrag.Height / 2);
+                newToDrag.Margin = margin;
+            }
+        }
+
+        public void setToDrag(CourseBlock c)
+        {
+            this.toDrag = c;
         }
 
     }

@@ -2,14 +2,14 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Course Registration System" Height="800" Width="1200">
-    <Grid>
+    <Grid x:Name="mainGrid" MouseMove="OnMouseMove">
         <TabControl HorizontalAlignment="Left" Height="769" VerticalAlignment="Top" Width="1192">
             <!-- Fall Tab -->
             <TabItem Header="FALL - 2015" FontWeight="Bold">
 
                 <!-- Grid Layout for the whole screen -->
                 <Grid Background="White" Margin="0,-4,0,4">
-                    <Grid HorizontalAlignment="Left" Height="741" VerticalAlignment="Top" Width="1186"/>
+                    <Grid x:Name="secondGrid" HorizontalAlignment="Left" Height="741" VerticalAlignment="Top" Width="1186"/>
 
                     <!-- Quick Links Section : Create canvas to have buttons on top -->
 
@@ -34,10 +34,8 @@
                                 <!-- Search result canvas -->
                                 <Canvas HorizontalAlignment="Left" Height="479" Margin="10,183,0,0" VerticalAlignment="Top" Width="326">
                                     <ScrollViewer x:Name="scrollViewer" Height="456" Width="316" Canvas.Top="13" BorderBrush="Black" BorderThickness="2">
-                                        <StackPanel x:Name="courses" Height="auto" Width="auto"></StackPanel>
+                                        <StackPanel x:Name="courselist" Height="456" Width="296"></StackPanel>
                                     </ScrollViewer>
-
-
                                 </Canvas>
                             </Grid>
                         </TabItem>
