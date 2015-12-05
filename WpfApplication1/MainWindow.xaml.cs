@@ -21,9 +21,13 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
+<<<<<<< HEAD
        // private CourseBlock toDrag;
         private Schedule schedule;
 
+=======
+        private CourseBlock[] WLCourses = new CourseBlock[0];
+>>>>>>> master
 
         public MainWindow()
         {
@@ -91,6 +95,7 @@ namespace WpfApplication1
 
         }
 
+<<<<<<< HEAD
         /*
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -120,5 +125,130 @@ namespace WpfApplication1
         */
 
 
+=======
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+            this.courses.Children.Clear();
+            int j = 0;
+            int k = 0;
+            string course = S_Subject.Text;
+            int courseNum;
+            int.TryParse(S_courseNum.Text, out courseNum); 
+            CourseBlock[] S_courses;
+            for(int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i].getCourse() == course)
+                {
+                    if ((allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    {
+                        j++;
+                    }
+                }
+            }
+            S_courses = new CourseBlock[j];
+
+            for (int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i].getCourse() == course)
+                {
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    {
+                        CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
+                                                            allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
+                                                            allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(),
+                                                            allCourses[i].getCourseNum(), this);
+                        S_courses[k] = temp;
+                        k++;
+                    }
+                }
+            }
+            
+            for (int i = 0; i < S_courses.Length; i++)
+            {
+                courses.Children.Add(S_courses[i]);
+            }
+            
+        }
+
+        public void AddtoWaitList(int seats, int waitSeat, string prof, string course, string courseName, string[] days, int[] times, string type, string details, int courseNum)
+        {
+           
+            CourseBlock temp = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
+            temp.WaitlistBtn.Visibility= System.Windows.Visibility.Hidden;
+            temp.triangle.Visibility = System.Windows.Visibility.Visible;
+            temp.square.Visibility = System.Windows.Visibility.Hidden;
+            Array.Resize<CourseBlock>(ref WLCourses, WLCourses.Length +1);
+            WLCourses[WLCourses.Length - 1] = temp;
+            this.WL_List.Children.Clear();
+
+            for (int i = 0; i < WLCourses.Length; i++)
+            {
+                this.WL_List.Children.Add(WLCourses[i]);
+            }
+
+
+            for (int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i] == temp)
+                {
+                    
+                        allCourses[i].setisWaitlisted(true); 
+                    
+                }
+            }
+
+        }
+
+        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
+        {
+            
+        }
+
+        private void Button_Click_4(object sender, RoutedEventArgs e)
+        {
+            this.SwapCourses.Children.Clear();
+            int j = 0;
+            int k = 0;
+            string course = SubjectSwap.Text;
+            int courseNum;
+            int.TryParse(courseNumSwap.Text, out courseNum);
+            CourseBlock[] S_courses;
+            for (int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i].getCourse() == course)
+                {
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    {
+                        j++;
+                    }
+                }
+            }
+            S_courses = new CourseBlock[j];
+
+            for (int i = 0; i < allCourses.Length; i++)
+            {
+                if (allCourses[i].getCourse() == course)
+                {
+                   
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised())) 
+                    {
+                        CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
+                                                            allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
+                                                            allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(), 
+                                                            allCourses[i].getCourseNum(), this);
+                        S_courses[k] = temp;
+                        k++;
+                    }
+                    
+                }
+            }
+
+            for (int i = 0; i < S_courses.Length; i++)
+            {
+                SwapCourses.Children.Add(S_courses[i]);
+            }
+
+        }
+>>>>>>> master
     }
 }

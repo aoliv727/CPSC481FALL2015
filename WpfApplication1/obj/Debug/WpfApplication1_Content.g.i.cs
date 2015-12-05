@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("res/coursedatabase.txt")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("untitled.png")]
 
 

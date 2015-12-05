@@ -35,6 +35,7 @@ namespace WpfApplication1
         private Boolean isWaitlisted;
        // private Boolean captured;
 
+<<<<<<< HEAD
         public CourseBlock(CourseBlock c)
         {
             this.seats = c.seats;
@@ -56,13 +57,18 @@ namespace WpfApplication1
            // this.Margin = c.Margin;
         }
 
+=======
+>>>>>>> master
         public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
         {
             String printDays = null;
             InitializeComponent();
             // Set all the private Variables
             this.screen = screen;
+<<<<<<< HEAD
             //this.captured = false;
+=======
+>>>>>>> master
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
@@ -73,6 +79,7 @@ namespace WpfApplication1
             this.type = type;
             this.details = details;
             this.courseNum = courseNum;
+            this.isWaitlisted = false;
 
             // Input all relavent values into the GUI
             courselbl.Content = this.course;
@@ -87,10 +94,13 @@ namespace WpfApplication1
             detailslbl.ToolTip = details;
             courseNumlbl.Content = courseNum;
 
-            //NOT YET IMPLEMENTED A TRIANGLE FOR WAITLIST FF2379CF ("#FF4CD62D")
-
-
-            if (seats == 100 && waitSeat == 10)
+           if(isWaitlisted)
+            {
+                triangle.Visibility = System.Windows.Visibility.Visible;
+                square.Visibility = System.Windows.Visibility.Hidden;
+                WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            }
+           else if (seats == 100 && waitSeat == 10)
             {
                 square.Visibility = System.Windows.Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
@@ -110,7 +120,60 @@ namespace WpfApplication1
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
+            triangle.Visibility = System.Windows.Visibility.Visible;
+            square.Visibility = System.Windows.Visibility.Hidden;
+            WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            isWaitlisted = true;
+            screen.AddtoWaitList(this.seats, this.waitSeat, this.prof, this.course, this.courseName, this.days, this.times, this.type, this.details, this.courseNum);
+        }
 
+        public string getCourse()
+        {
+            return this.course;
+        }
+
+        public int getCourseNum()
+        {
+            return this.courseNum;
+        }
+        public int getSeats()
+        {
+            return this.seats;
+        } 
+
+        public int getWaitSeat ()
+        {
+            return this.waitSeat;
+        }
+
+        public string getProf()
+        {
+            return this.prof;
+        }
+
+        public string getCourseName()
+        {
+            return this.courseName;
+        }
+
+        public string[] getDays()
+        {
+            return this.days;
+        }
+
+        public int[] getTimes()
+        {
+            return this.times;
+        }
+
+        public string getType()
+        {
+            return this.type;
+        }
+
+       public string getDetails()
+        {
+            return this.details;
         }
 
         public void setEnrolled(Boolean isEnrolled)

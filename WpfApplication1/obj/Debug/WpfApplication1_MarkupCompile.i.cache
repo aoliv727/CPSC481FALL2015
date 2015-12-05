@@ -4,15 +4,22 @@
 winexe
 C#
 .cs
-U:\481Project\WpfApplication1\obj\Debug\
+C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\obj\Debug\
 WpfApplication1
 none
 false
 DEBUG;TRACE
+<<<<<<< HEAD
 U:\481Project\WpfApplication1\App.xaml
 3477542829
 
 11288441369
+=======
+C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\App.xaml
+2-455818205
+
+101059096682
+>>>>>>> master
 12-1401562060
 CourseBlock.xaml;MainWindow.xaml;Schedule.xaml;
 
