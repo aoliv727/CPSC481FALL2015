@@ -21,13 +21,9 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
-<<<<<<< HEAD
        // private CourseBlock toDrag;
         private Schedule schedule;
-
-=======
         private CourseBlock[] WLCourses = new CourseBlock[0];
->>>>>>> master
 
         public MainWindow()
         {
@@ -36,7 +32,7 @@ namespace WpfApplication1
             fileReader();
             for (int i = 0; i < allCourses.Length; i++)
             {
-                this.courselist.Children.Add(allCourses[i]);
+                this.courses.Children.Add(allCourses[i]);
             }
             scheduleCanvas.Children.Add(schedule);
             Canvas.SetLeft(schedule, 10);
@@ -95,7 +91,6 @@ namespace WpfApplication1
 
         }
 
-<<<<<<< HEAD
         /*
 
         private void OnMouseMove(object sender, MouseEventArgs e)
@@ -125,7 +120,7 @@ namespace WpfApplication1
         */
 
 
-=======
+
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             this.courses.Children.Clear();
@@ -249,6 +244,6 @@ namespace WpfApplication1
             }
 
         }
->>>>>>> master
+
     }
 }

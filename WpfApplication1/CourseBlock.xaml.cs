@@ -35,7 +35,7 @@ namespace WpfApplication1
         private Boolean isWaitlisted;
        // private Boolean captured;
 
-<<<<<<< HEAD
+
         public CourseBlock(CourseBlock c)
         {
             this.seats = c.seats;
@@ -57,18 +57,14 @@ namespace WpfApplication1
            // this.Margin = c.Margin;
         }
 
-=======
->>>>>>> master
+
         public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
         {
             String printDays = null;
             InitializeComponent();
             // Set all the private Variables
             this.screen = screen;
-<<<<<<< HEAD
             //this.captured = false;
-=======
->>>>>>> master
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
