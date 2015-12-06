@@ -31,6 +31,7 @@ namespace WpfApplication1
             {
                 this.courses.Children.Add(allCourses[i]);
             }
+            populateSwap();
         }
 
         private void fileReader()
@@ -52,6 +53,42 @@ namespace WpfApplication1
                 course = file.ReadLine();
                 courseNum = int.Parse(file.ReadLine());
                 courseName = file.ReadLine();
+                type = file.ReadLine();
+                prof = file.ReadLine();
+                days = file.ReadLine().Split(splitter);
+                String[] arr = file.ReadLine().Split(splitter);
+                times = new int[arr.Length];
+                for (int j = 0; j < arr.Length; j++)
+                {
+                    times[j] = int.Parse(arr[j]);
+                }
+                details = file.ReadLine();
+                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
+            }
+        }
+
+        //Populate the swap combobox dropdown thing
+        private void populateSwap()
+        {
+            int seats, waitSeat, courseNum;
+            String prof, course, courseName, type, details;
+            String[] days;
+            char[] splitter = { ',' };
+            int[] times;
+
+            System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
+            int numCourses = int.Parse(file.ReadLine());
+            allCourses = new CourseBlock[numCourses];
+
+            for (int i = 0; i < numCourses; i++)
+            {
+                seats = int.Parse(file.ReadLine());
+                waitSeat = int.Parse(file.ReadLine());
+                course = file.ReadLine();
+                courseNum = int.Parse(file.ReadLine());
+                courseName = file.ReadLine();
+                //put it in the combobox
+                Swap_combo.Items.Add(course + courseNum.ToString() + " " + courseName);
                 type = file.ReadLine();
                 prof = file.ReadLine();
                 days = file.ReadLine().Split(splitter);

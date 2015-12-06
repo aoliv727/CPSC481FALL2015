@@ -1,4 +1,4 @@
-﻿4
+﻿5
 100
 10
 CPSC
@@ -36,6 +36,16 @@ CPSC
 Third
 TUT 01
 Sammy
+R,F
+1,2
+STUFF AND THINGS
+80
+7
+CPSC
+555
+Introduction to Computability
+Lec
+Brian
 R,F
 1,2
 STUFF AND THINGS
