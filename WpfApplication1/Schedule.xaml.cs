@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,77 +22,57 @@ namespace WpfApplication1
     public partial class Schedule : UserControl
     {
         private MainWindow screen;
+        private CourseBlock[] scheduledCourses;
+        private CourseBlock[] dropList;
 
         public Schedule(MainWindow screen)
         {
             InitializeComponent();
             this.screen = screen;
+            scheduledCourses = new CourseBlock[0];
+            dropList = new CourseBlock[0];
         }
 
-        private void OnDrop(object sender, DragEventArgs e)
+        public bool tryToSchedule(CourseBlock course)
         {
-            /*
-            base.OnDrop(e);
+            bool success = true;
+            int[] courseTimes = course.getTimes();         
 
-            // Add Check if course is valid first
-            // when dropped do things
-            if (e.KeyStates.HasFlag(DragDropKeyStates.ControlKey))
+            // Check for time Conflicts
+            for(int i = 0; i < scheduledCourses.Length; i++)
             {
-                e.Effects = DragDropEffects.Copy;
+                int[] currCouseTimes = scheduledCourses[i].getTimes();
+                if (scheduledCourses[i] == course)
+                {
+                    success = false;
+                }
+                else if(courseTimes[0] < currCouseTimes[1] && courseTimes[0] >= currCouseTimes[0])
+                {
+                    success = false;
+                }
+                else if(courseTimes[1] > currCouseTimes[0] && courseTimes[1] <= currCouseTimes[1])
+                {
+                    success = false;
+                } 
             }
-            else
+            // If no time Conflict then add it to Schedule Array & Update Schedule
+            if(success)
             {
-                e.Effects = DragDropEffects.Move;
-            }
-            e.Handled = true;
-             */
-           CourseBlock toDrop = (CourseBlock)sender;
-            //CourseBlock _element = (CourseBlock)e.Data.GetData("Object");
-            UIElement _element = (UIElement)e.Data.GetData("Object");
-            StackPanel _parent = (StackPanel)VisualTreeHelper.GetParent(_element);
-
-            if (e.AllowedEffects.HasFlag(DragDropEffects.Move))
-            {
-                _parent.Children.Remove(_element);
-                //_panel.Children.Add(_element);
-                // set the value to return to the DoDragDrop call
-                e.Effects = DragDropEffects.Move;
-            }
+                Array.Resize(ref scheduledCourses, scheduledCourses.Length + 1);
+                scheduledCourses[scheduledCourses.Length] = course;
+                Update();
+            }       
+            return success;
         }
 
-        private void OnDragOver(object sender, DragEventArgs e)
+        private void DropCourses()
         {
-            /*
-            base.OnDragOver(e);
-            e.Effects = DragDropEffects.None;
+            screen.setCoursesToDrop(this.dropList);
+        }
 
-                    // Set Effects to notify the drag source what effect
-                    // the drag-and-drop operation will have. These values are 
-                    // used by the drag source's GiveFeedback event handler.
-                    // (Copy if CTRL is pressed; otherwise, move.)
-                    if (e.KeyStates.HasFlag(DragDropKeyStates.ControlKey))
-                    {
-                        e.Effects = DragDropEffects.Copy;
-                    }
-                    else
-                    {
-                        e.Effects = DragDropEffects.Move;
-                    }           
-            e.Handled = true;
-            */
-            if (e.Data.GetDataPresent("Object"))
-            {
-                // These Effects values are used in the drag source's
-                // GiveFeedback event handler to determine which cursor to display.
-                if (e.KeyStates == DragDropKeyStates.ControlKey)
-                {
-                    e.Effects = DragDropEffects.Copy;
-                }
-                else
-                {
-                    e.Effects = DragDropEffects.Move;
-                }
-            }
+        public void Update()
+        {
+            //Read from the schedule and display it's courses
         }
     }
 }

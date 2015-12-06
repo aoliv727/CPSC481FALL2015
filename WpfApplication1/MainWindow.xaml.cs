@@ -21,22 +21,27 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
-       // private CourseBlock toDrag;
+        private CourseBlock toDrag;
         private Schedule schedule;
+        private bool mouseOnSchedule;
         private CourseBlock[] WLCourses = new CourseBlock[0];
+        private CourseBlock[] SCourses;
+        private CourseBlock[] CoursesToDrop = new CourseBlock[0];
+        private CourseBlock currSelected;
 
         public MainWindow()
         {
             InitializeComponent();
             schedule = new Schedule(this);
+            scheduleCanvas.Children.Add(schedule);
+            Canvas.SetLeft(schedule, 10);
+            Canvas.SetTop(schedule, 40);
             fileReader();
+
             for (int i = 0; i < allCourses.Length; i++)
             {
                 this.courses.Children.Add(allCourses[i]);
             }
-            scheduleCanvas.Children.Add(schedule);
-            Canvas.SetLeft(schedule, 10);
-            Canvas.SetTop(schedule, 40);
         }
 
         private void fileReader()
@@ -76,9 +81,14 @@ namespace WpfApplication1
 
         }
 
+        //Swap Combo box
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+            if (SCourses == null) { return; }
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                Swap_combo.Items.Add(SCourses[i].getCourse()+" "+SCourses[i].getCourseNum()+" "+SCourses[i].getCourseName());
+            }
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -86,41 +96,37 @@ namespace WpfApplication1
 
         }
 
+        //Switch Tutorial Button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
         }
 
-        /*
+        
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
             if (toDrag == null) { return; }
-
-            courselist.Children.Remove(toDrag);
-            int gridChildren = mainGrid.Children.Count;
-
-            CourseBlock newToDrag = new CourseBlock(toDrag);
-            //mainGrid.Children.Add(newToDrag);
-            mainGrid.Children.Insert(gridChildren, newToDrag);
-
-            if (newToDrag.getCaptured())
+            Thickness margin = (toDrag.Margin);
+            toDrag.Visibility = Visibility.Hidden;
+            fakeDragObj.Visibility = Visibility.Visible;
+           
+            if (toDrag.getCaptured())
             {
-                Thickness margin = (newToDrag.Margin);
-                margin.Left = e.GetPosition(mainGrid).X - (newToDrag.Width / 2);
-                margin.Top = e.GetPosition(mainGrid).Y - (newToDrag.Height / 2);
-                newToDrag.Margin = margin;
+                fakeDragObj.Margin = margin;
+                margin.Left = e.GetPosition(mainGrid).X - (fakeDragObj.Width / 2);
+                margin.Top = e.GetPosition(mainGrid).Y - (fakeDragObj.Height / 2);
+                fakeDragObj.Margin = margin;
             }
         }
 
-        public void setToDrag(CourseBlock c)
+        public void setToDrag(CourseBlock toDrag)
         {
-            this.toDrag = c;
+            this.toDrag = toDrag;
+            Console.WriteLine("Got here and set ToDrag");
         }
-        */
 
-
-
+        //Search button on Search tab
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             this.courses.Children.Clear();
@@ -194,11 +200,13 @@ namespace WpfApplication1
 
         }
 
+        // Search Combo box in search tab
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             
         }
 
+        //Search Button on Swap tab
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             this.SwapCourses.Children.Clear();
@@ -245,5 +253,94 @@ namespace WpfApplication1
 
         }
 
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            bool success;
+
+            if (mouseOnSchedule)//e.GetPosition(mainGrid).Y > scheduleCanvas.Margin.Left)//mouseOnSchedule)
+            {           
+                success = schedule.tryToSchedule(toDrag);
+                if (success)
+                {
+                    Console.WriteLine("got in here");
+                    courses.Children.Remove(toDrag);
+                    fakeDragObj.Visibility = Visibility.Hidden;
+                    // Add to drag to SCourses[]
+                }
+                else
+                {
+                    if (e.Handled == false)
+                    {
+                        toDrag.Visibility = Visibility.Visible;
+                        fakeDragObj.Visibility = Visibility.Hidden;
+                        this.toDrag = null;
+                    }
+                }
+            }
+            else
+            {
+                if (e.Handled == false && toDrag != null)
+                {
+                    toDrag.Visibility = Visibility.Visible;
+                    fakeDragObj.Visibility = Visibility.Hidden;
+                    this.toDrag = null;
+                }
+            }
+            
+        }
+
+        public void setOnSchedule(bool onSchedule)
+        {
+            this.mouseOnSchedule = onSchedule;
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.Handled == true) { return; }
+        }
+
+        public void setCurrSelected(CourseBlock currSelected)
+        {
+            this.currSelected = currSelected;
+        }
+
+        //Swap Button
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Drop Button
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            CourseBlock[] temp = new CourseBlock[0];
+
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                for (int j = 0; j < CoursesToDrop.Length; j++)
+                {
+                    if(SCourses[i] != CoursesToDrop[j])
+                    {
+                        Array.Resize(ref temp, temp.Length + 1);
+                        temp[i] = SCourses[i];
+                    }
+                }
+
+            }
+
+            this.SCourses = temp;
+            schedule.Update();
+        }
+
+        public void setCoursesToDrop(CourseBlock[] coursesToDrop)
+        {
+            this.CoursesToDrop = coursesToDrop;
+        }
+
+        //Enroll Button
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -4,8 +4,50 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              mc:Ignorable="d" 
-             d:DesignHeight="595" d:DesignWidth="763" AllowDrop="True" Drop="OnDrop" DragOver="OnDragOver">
-    <Grid>
-        <Canvas HorizontalAlignment="Left" Height="595" VerticalAlignment="Top" Width="763" Background="White"/>
+             d:DesignHeight="595" d:DesignWidth="763">
+    <Grid x:Name="grid" Background="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="54"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="63"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="140"/>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="Monlbl" Content="Monday" Grid.Column="1" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="Tueslbl" Content="Tuesday" Grid.Column="2" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="Wedlbl" Content="Wednesday" Grid.Column="3" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="Thurslbl" Content="Thursday" Grid.Column="4" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="Frilbl" Content="Friday" Grid.Column="5" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
+        <Label x:Name="label" Content="7:00" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label1" Content="8:00" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label2" Content="9:00" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label3" Content="10:00" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label4" Content="11:00" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label5" Content="12:00" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label6" Content="1:00" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label7" Content="2:00" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label8" Content="3:00" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label9" Content="4:00" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label10" Content="6:00" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label11" Content="5:00" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="63"/>
+
+
     </Grid>
 </UserControl>

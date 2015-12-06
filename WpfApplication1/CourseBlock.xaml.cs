@@ -33,7 +33,7 @@ namespace WpfApplication1
         private String details;
         private Boolean isErolled;
         private Boolean isWaitlisted;
-       // private Boolean captured;
+        private Boolean captured;
 
 
         public CourseBlock(CourseBlock c)
@@ -51,10 +51,10 @@ namespace WpfApplication1
             this.isErolled = c.isErolled;
             this.isWaitlisted = c.isWaitlisted;
             this.screen = c.screen;
-           // this.captured = c.captured;
-            //this.Width = c.Width;
-           // this.Height = c.Height;
-           // this.Margin = c.Margin;
+            this.captured = c.captured;
+            this.Width = c.Width;
+            this.Height = c.Height;
+            this.Margin = c.Margin;
         }
 
 
@@ -62,9 +62,9 @@ namespace WpfApplication1
         {
             String printDays = null;
             InitializeComponent();
+
             // Set all the private Variables
             this.screen = screen;
-            //this.captured = false;
             this.seats = seats;
             this.waitSeat = waitSeat;
             this.prof = prof;
@@ -92,33 +92,33 @@ namespace WpfApplication1
 
            if(isWaitlisted)
             {
-                triangle.Visibility = System.Windows.Visibility.Visible;
-                square.Visibility = System.Windows.Visibility.Hidden;
-                WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+                triangle.Visibility = Visibility.Visible;
+                square.Visibility = Visibility.Hidden;
+                WaitlistBtn.Visibility = Visibility.Hidden;
             }
            else if (seats == 100 && waitSeat == 10)
             {
-                square.Visibility = System.Windows.Visibility.Visible;
+                square.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
             }
             else if (seats == 100 && waitSeat != 10)
             {
-                square.Visibility = System.Windows.Visibility.Visible;
-                WaitlistBtn.Visibility = System.Windows.Visibility.Visible;
+                square.Visibility = Visibility.Visible;
+                WaitlistBtn.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
             }
             else
             {
-                circle.Visibility = System.Windows.Visibility.Visible;
+                circle.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Green;
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            triangle.Visibility = System.Windows.Visibility.Visible;
-            square.Visibility = System.Windows.Visibility.Hidden;
-            WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            triangle.Visibility = Visibility.Visible;
+            square.Visibility = Visibility.Hidden;
+            WaitlistBtn.Visibility = Visibility.Hidden;
             isWaitlisted = true;
             screen.AddtoWaitList(this.seats, this.waitSeat, this.prof, this.course, this.courseName, this.days, this.times, this.type, this.details, this.courseNum);
         }
@@ -191,38 +191,7 @@ namespace WpfApplication1
         {
             return this.isWaitlisted;
         }
-
-        private void OnMouseMove(object sender, MouseEventArgs e)
-        {
-            base.OnMouseMove(e);
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                // Package the data.
-                DataObject data = new DataObject();
-                data.SetData("Object", this);
-
-                // Inititate the drag-and-drop operation.
-                DragDrop.DoDragDrop(this, data, DragDropEffects.Move);
-            }
-        }
-
-        private void OnGiveFeedback(object sender, GiveFeedbackEventArgs e)
-        {
-            base.OnGiveFeedback(e);
-            // These Effects values are set in the drop target's
-            // DragOver event handler.
-           if (e.Effects.HasFlag(DragDropEffects.Move))
-            {
-                Mouse.SetCursor(Cursors.Hand);
-            }
-            else
-            {
-                Mouse.SetCursor(Cursors.No);
-            }
-            e.Handled = true;
-        }
-
-        /*
+        
         public void setCaptured(Boolean captured)
         {
             this.captured = captured;
@@ -233,13 +202,26 @@ namespace WpfApplication1
             return this.captured;
         }
         
+
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Console.WriteLine("Got here and sent ToDrag to false");
+            this.captured = false;
+            screen.setToDrag(null);
+           // e.Handled = true;
+        }
+
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            captured = true;
+            Console.WriteLine("Got here and sent ToDrag to true");
+            this.captured = true;
             screen.setToDrag(this);
         }
-        */
 
-
+        private void radioButton_Checked(object sender, RoutedEventArgs e)
+        {
+            screen.setCurrSelected(this);
+            canvas.Background = Brushes.Cornsilk;       
+        }
     }
 }
