@@ -4,8 +4,8 @@
         Title="Course Registration System" Height="800" Width="1200">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="259*"/>
-            <RowDefinition Height="510*"/>
+            <RowDefinition Height="257*"/>
+            <RowDefinition Height="512*"/>
         </Grid.RowDefinitions>
         <TabControl HorizontalAlignment="Left" Height="769" VerticalAlignment="Top" Width="1192" Grid.RowSpan="2">
             <!-- Fall Tab -->
@@ -49,7 +49,7 @@
                             </Grid>
                         </TabItem>
                         <!-- WaitList -->
-                        <TabItem Header="WaitList" FontWeight="Bold" Height="22" VerticalAlignment="Top">
+                        <TabItem Header="WaitList" FontWeight="Bold" Height="24" VerticalAlignment="Top" Margin="-2,0">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="335">
 
@@ -60,7 +60,7 @@
                                 </ScrollViewer>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Swap" FontWeight="Bold">
+                        <TabItem Header="Swap" FontWeight="Bold" Height="24" VerticalAlignment="Bottom">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="603" VerticalAlignment="Top" Width="335">
                                     <ComboBox x:Name="Swap_combo" Height="24" Canvas.Left="10" Canvas.Top="10" Width="315" SelectionChanged="ComboBox_SelectionChanged">
@@ -84,11 +84,11 @@
                                         <DropShadowEffect/>
                                     </Label.Effect>
                                 </Label>
-                                <Label Content="Subject : " Margin="15,133,254,514"/>
+                                <Label Content="Subject : " Margin="15,133,254,503"/>
                                 <ComboBox x:Name="SubjectSwap" Margin="79,137,79,510">
                                     <ComboBoxItem Content="CPSC"/>
                                 </ComboBox>
-                                <Label Content="Course Contains Number : " Margin="15,167,163,480"/>
+                                <Label Content="Course Contains Number : " Margin="15,166,163,469"/>
                                 <Button Content="SEARCH" Margin="133,208,79,437" Click="Button_Click_4"/>
                             </Grid>
                         </TabItem>
