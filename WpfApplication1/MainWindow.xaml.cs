@@ -22,6 +22,9 @@ namespace WpfApplication1
     {
         private CourseBlock[] allCourses;
         private CourseBlock[] WLCourses = new CourseBlock[0];
+        private SwapCourseBlock[] S_courses;
+        private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
+        private int swapIndex; //index of the selected course you're going to swap out of from SCourses
 
         public MainWindow()
         {
@@ -108,9 +111,20 @@ namespace WpfApplication1
 
         }
 
+        //Swap selection thing
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-
+        /*    swapValueSelected = Swap_combo.Text;
+            swapValueSelected = swapValueSelected.Substring(8);//grabs from the 8th spot to the end (inclusive) (starts from 0)
+            int k = 0;
+            while (k < SCourses.Length)
+            {
+                if (SCourses[k].getCourseName() == swapValueSelected)
+                {
+                    swapIndex = k;
+                    k = SCourses.Length;
+                }
+            }*/
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -201,6 +215,17 @@ namespace WpfApplication1
             
         }
 
+        public void uncheckSwap(SwapCourseBlock[] S_courses)
+        {
+            int i = 0;
+            while (i < S_courses.Length)
+            {
+                S_courses[i].SwapSelector.Opacity = 0;
+                i++;
+            }
+        }
+
+        //Swap search button
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             this.SwapCourses.Children.Clear();
@@ -209,7 +234,6 @@ namespace WpfApplication1
             string course = SubjectSwap.Text;
             int courseNum;
             int.TryParse(courseNumSwap.Text, out courseNum);
-            CourseBlock[] S_courses;
             for (int i = 0; i < allCourses.Length; i++)
             {
                 if (allCourses[i].getCourse() == course)
@@ -220,7 +244,7 @@ namespace WpfApplication1
                     }
                 }
             }
-            S_courses = new CourseBlock[j];
+            S_courses = new SwapCourseBlock[j];
 
             for (int i = 0; i < allCourses.Length; i++)
             {
@@ -229,10 +253,10 @@ namespace WpfApplication1
                    
                     if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised())) 
                     {
-                        CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
+                        SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(), 
-                                                            allCourses[i].getCourseNum(), this);
+                                                            allCourses[i].getCourseNum(), this, S_courses);
                         S_courses[k] = temp;
                         k++;
                     }
@@ -246,5 +270,44 @@ namespace WpfApplication1
             }
 
         }
+
+        //SWAP BUTTON
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+         /*   //Find the course you want to swap into
+            int i = -1;
+            int j = 0;
+            bool somethingSelected = false;
+            while (j < S_courses.Length)
+            {
+                i++;
+                if (S_courses[i].SwapSelector.Opacity > 0)
+                {
+                    j = S_courses.Length;
+                    somethingSelected = true;
+                }
+                j++;
+            }
+
+            //Compare the selected course with current schedule and identify any conflicts 
+            if (somethingSelected == true)
+            {
+                int k = 0;
+                bool conflict = false;
+                while (k < SCourses.Length)
+                {
+                    if (SCourses[k].getTimes() == S_courses[i].getTimes() && SCourses[k].getCourseName() != swapValueSelected)
+                    {
+                        conflict = true;
+                        errors message;
+                    }
+                }
+                if (conflict == false)
+                {
+                    SCourses[swapIndex] = S_courses[i];
+                }
+            }*/
+        }
+
     }
 }
