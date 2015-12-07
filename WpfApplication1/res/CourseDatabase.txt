@@ -37,7 +37,6 @@ Third
 TUT 01
 Sammy
 R,F
-<<<<<<< HEAD
 1,2
 STUFF AND THINGS
 80
@@ -48,8 +47,5 @@ Introduction to Computability
 Lec
 Brian
 R,F
-1,2
-=======
 16,19
->>>>>>> Abi
 STUFF AND THINGS

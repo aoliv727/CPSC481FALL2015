@@ -60,7 +60,6 @@ C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfAppl
 C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
 C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\bin\Debug\WpfApplication1.exe
 C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\bin\Debug\WpfApplication1.pdb
-<<<<<<< HEAD
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\bin\Debug\WpfApplication1.exe.config
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\WpfApplication1.exe
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\WpfApplication1.pdb
@@ -80,7 +79,6 @@ C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfAppl
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
 U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.baml
 U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
-=======
 >>>>>>> master
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.baml
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.g.cs

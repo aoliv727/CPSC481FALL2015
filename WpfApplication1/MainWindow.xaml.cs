@@ -25,15 +25,13 @@ namespace WpfApplication1
         private Schedule schedule;
         private bool mouseOnSchedule = true;
         private CourseBlock[] WLCourses = new CourseBlock[0];
-<<<<<<< HEAD
         private SwapCourseBlock[] S_courses;
         private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
         private int swapIndex; //index of the selected course you're going to swap out of from SCourses
-=======
         private CourseBlock[] SCourses = new CourseBlock[0];
         private CourseBlock[] CoursesToDrop = new CourseBlock[0];
         private CourseBlock currSelected;
->>>>>>> Abi
+
 
         public MainWindow()
         {
@@ -124,7 +122,7 @@ namespace WpfApplication1
 
         }
 
-<<<<<<< HEAD
+
         //Swap selection thing
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -139,8 +137,9 @@ namespace WpfApplication1
                     k = SCourses.Length;
                 }
             }*/
-=======
+        }
         //Swap Combo box
+        /*
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (SCourses == null) { return; }
@@ -148,8 +147,8 @@ namespace WpfApplication1
             {
                 Swap_combo.Items.Add(SCourses[i].getCourse()+" "+SCourses[i].getCourseNum()+" "+SCourses[i].getCourseName());
             }
->>>>>>> Abi
         }
+        */
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
@@ -272,7 +271,7 @@ namespace WpfApplication1
             
         }
 
-<<<<<<< HEAD
+
         public void uncheckSwap(SwapCourseBlock[] S_courses)
         {
             int i = 0;
@@ -283,10 +282,7 @@ namespace WpfApplication1
             }
         }
 
-        //Swap search button
-=======
         //Search Button on Swap tab
->>>>>>> Abi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             this.SwapCourses.Children.Clear();
@@ -342,7 +338,7 @@ namespace WpfApplication1
 
         }
 
-<<<<<<< HEAD
+
         //SWAP BUTTON
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
@@ -381,7 +377,7 @@ namespace WpfApplication1
             }*/
         }
 
-=======
+
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             bool success;
@@ -439,12 +435,6 @@ namespace WpfApplication1
             this.currSelected = currSelected;
         }
 
-        //Swap Button
-        private void Button_Click_5(object sender, RoutedEventArgs e)
-        {
-
-        }
-
         // Drop Button
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
@@ -477,6 +467,5 @@ namespace WpfApplication1
         {
 
         }
->>>>>>> Abi
     }
 }
