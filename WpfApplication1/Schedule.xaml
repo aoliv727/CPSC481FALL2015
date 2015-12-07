@@ -35,19 +35,77 @@
         <Label x:Name="Wedlbl" Content="Wednesday" Grid.Column="3" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
         <Label x:Name="Thurslbl" Content="Thursday" Grid.Column="4" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
         <Label x:Name="Frilbl" Content="Friday" Grid.Column="5" HorizontalAlignment="Left" Height="55" VerticalAlignment="Top" Width="140"/>
-        <Label x:Name="label" Content="7:00" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label1" Content="8:00" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label2" Content="9:00" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label3" Content="10:00" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label4" Content="11:00" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label5" Content="12:00" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label6" Content="1:00" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label7" Content="2:00" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label8" Content="3:00" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label9" Content="4:00" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label10" Content="6:00" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="63"/>
-        <Label x:Name="label11" Content="5:00" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="63"/>
-
-
+        <Label x:Name="label" Content="7:00am" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label1" Content="8:00am" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label2" Content="9:00am" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label3" Content="10:00am" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label4" Content="11:00am" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label5" Content="12:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label6" Content="1:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label7" Content="2:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label8" Content="3:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label9" Content="4:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label10" Content="6:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="63"/>
+        <Label x:Name="label11" Content="5:00pm" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="63"/>
+        <Rectangle x:Name="M7" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T7" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W7" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R7" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F7" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="1" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M8" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T8" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W8" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R8" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F8" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="2" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M9" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T9" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W9" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R9" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F9" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="3" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M10" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T10" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W10" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R10" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F10" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="4" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M11" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T11" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W11" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R11" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F11" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="5" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M12" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T12" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W12" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R12" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F12" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="6" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M13" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T13" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W13" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R13" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F13" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="7" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M14" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T14" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W14" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R14" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F14" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="8" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M15" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T15" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W15" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R15" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F15" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="9" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M16" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T16" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W16" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R16" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F16" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="10" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M17" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T17" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W17" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R17" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F17" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="11" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="M18" Grid.Column="1" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="T18" Grid.Column="2" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="W18" Grid.Column="3" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="R18" Grid.Column="4" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="140"/>
+        <Rectangle x:Name="F18" Grid.Column="5" Fill="White" HorizontalAlignment="Left" Height="41" Grid.Row="12" VerticalAlignment="Top" Width="140"/>
     </Grid>
 </UserControl>

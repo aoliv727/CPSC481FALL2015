@@ -29,6 +29,7 @@ namespace WpfApplication1
         {
             InitializeComponent();
             this.screen = screen;
+            grid.ShowGridLines = true;
             scheduledCourses = new CourseBlock[0];
             dropList = new CourseBlock[0];
         }
@@ -36,32 +37,39 @@ namespace WpfApplication1
         public bool tryToSchedule(CourseBlock course)
         {
             bool success = true;
-            int[] courseTimes = course.getTimes();         
 
-            // Check for time Conflicts
-            for(int i = 0; i < scheduledCourses.Length; i++)
+            // Check if Closed
+            if (!course.getisClosed())
             {
-                int[] currCouseTimes = scheduledCourses[i].getTimes();
-                if (scheduledCourses[i] == course)
+                // Check for time Conflicts
+                int[] courseTimes = course.getTimes();
+                for (int i = 0; i < scheduledCourses.Length; i++)
                 {
-                    success = false;
+                    int[] currCourseTimes = scheduledCourses[i].getTimes();
+                    if (scheduledCourses[i] == course)
+                    {
+                        success = false;
+                    }
+                    else if (courseTimes[0] < currCourseTimes[1] && courseTimes[0] >= currCourseTimes[0])
+                    {
+                        success = false;
+                    }
+                    else if (courseTimes[1] > currCourseTimes[0] && courseTimes[1] <= currCourseTimes[1])
+                    {
+                        success = false;
+                    }
                 }
-                else if(courseTimes[0] < currCouseTimes[1] && courseTimes[0] >= currCouseTimes[0])
-                {
-                    success = false;
-                }
-                else if(courseTimes[1] > currCouseTimes[0] && courseTimes[1] <= currCouseTimes[1])
-                {
-                    success = false;
-                } 
             }
-            // If no time Conflict then add it to Schedule Array & Update Schedule
-            if(success)
+            else
+            {
+                success = false;
+            }
+            // If no time Conflict and not closed then add it to Schedule Array
+            if (success)
             {
                 Array.Resize(ref scheduledCourses, scheduledCourses.Length + 1);
-                scheduledCourses[scheduledCourses.Length] = course;
-                Update();
-            }       
+                scheduledCourses[scheduledCourses.Length - 1] = course;
+            }
             return success;
         }
 
@@ -70,9 +78,90 @@ namespace WpfApplication1
             screen.setCoursesToDrop(this.dropList);
         }
 
+        private void AddToDroplist()
+        {
+
+        }
+
         public void Update()
         {
-            //Read from the schedule and display it's courses
+            // For every Course in schedule
+            for (int i = 0; i < scheduledCourses.Length; i++)
+            {
+
+                // For every Day in that Course
+                for (int j = 0; j < scheduledCourses[i].getDays().Length; j++)
+                {
+                    String[] days = scheduledCourses[i].getDays();
+                    int startime = scheduledCourses[i].getTimes()[0];
+                    int endtime = scheduledCourses[i].getTimes()[1];
+                    int startIndex = startime - 6;
+                    int timeDiff = endtime - startime;
+
+                    // Color the schedule according to the day and times
+                    switch (days[j])
+                    {
+                        case "M":
+                            for (int k = 0; k < timeDiff; k++)
+                            {
+                               Rectangle currNode = GetGridElement(startIndex, 1);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                               currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
+                               startIndex++;
+                            }
+                            break;
+                        case "T":
+                            for (int k = 0; k < timeDiff; k++)
+                            {
+                                Rectangle currNode = GetGridElement(startIndex, 2);
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
+                                startIndex++;
+                            }
+                            break;
+                        case "W":
+                            for (int k = 0; k < timeDiff; k++)
+                            {
+                                Rectangle currNode = GetGridElement(startIndex, 3);
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
+                                startIndex++;
+                            }
+                            break;
+                        case "R":
+                            for (int k = 0; k < timeDiff; k++)
+                            {
+                                Rectangle currNode = GetGridElement(startIndex, 4);
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
+                                startIndex++;
+                            }
+                            break;
+                        case "F":
+                            for (int k = 0; k < timeDiff; k++)
+                            {
+                                Rectangle currNode = GetGridElement(startIndex, 5);
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
+                                startIndex++;
+                            }
+                            break;
+                    }
+                }
+            }
         }
+
+       private Rectangle GetGridElement(int row, int column)
+        {
+            foreach (UIElement child in grid.Children)
+            {
+                if (Grid.GetRow(child) == row && Grid.GetColumn(child) == column)
+                {
+                    return (Rectangle)child;
+                }
+            }
+            return null;
+        }
+
     }
 }

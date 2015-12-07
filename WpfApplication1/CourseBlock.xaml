@@ -21,7 +21,6 @@
             <Ellipse x:Name="circle" Fill="#FF4CD62D" Height="25" Canvas.Left="254" Canvas.Top="10" Width="25" ToolTip="Class is Open" Visibility="Hidden"/>
             <Rectangle x:Name="square" Fill="#FF2379CF" Height="25" Canvas.Left="254" Canvas.Top="10" Width="25" ToolTip="Class is Closed" Visibility="Hidden"/>
             <Label x:Name="courseNumlbl" Content="000" Height="25" Canvas.Left="52" Canvas.Top="11" Width="33"/>
-            <RadioButton x:Name="radioButton" Content="" Height="15" Canvas.Left="274" Canvas.Top="69" Width="15" ToolTip="Select this Course" Checked="radioButton_Checked"/>
         </Canvas>
     </Grid>
 </UserControl>

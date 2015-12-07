@@ -34,6 +34,7 @@ namespace WpfApplication1
         private Boolean isErolled;
         private Boolean isWaitlisted;
         private Boolean captured;
+        private Boolean isClosed;
 
 
         public CourseBlock(CourseBlock c)
@@ -50,8 +51,10 @@ namespace WpfApplication1
             this.details = c.details;
             this.isErolled = c.isErolled;
             this.isWaitlisted = c.isWaitlisted;
+            this.isClosed = c.isClosed;
             this.screen = c.screen;
             this.captured = c.captured;
+
             this.Width = c.Width;
             this.Height = c.Height;
             this.Margin = c.Margin;
@@ -98,11 +101,13 @@ namespace WpfApplication1
             }
            else if (seats == 100 && waitSeat == 10)
             {
+                isClosed = true;
                 square.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
             }
             else if (seats == 100 && waitSeat != 10)
             {
+                isClosed = true;
                 square.Visibility = Visibility.Visible;
                 WaitlistBtn.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
@@ -114,6 +119,7 @@ namespace WpfApplication1
             }
         }
 
+        // WaitList Button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             triangle.Visibility = Visibility.Visible;
@@ -191,7 +197,17 @@ namespace WpfApplication1
         {
             return this.isWaitlisted;
         }
-        
+
+        public void setisClosed(Boolean isClosed)
+        {
+            this.isClosed = isClosed;
+        }
+
+        public Boolean getisClosed()
+        {
+            return this.isClosed;
+        }
+
         public void setCaptured(Boolean captured)
         {
             this.captured = captured;
@@ -205,23 +221,17 @@ namespace WpfApplication1
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Got here and sent ToDrag to false");
             this.captured = false;
             screen.setToDrag(null);
-           // e.Handled = true;
+            e.Handled = true;
         }
 
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
-            Console.WriteLine("Got here and sent ToDrag to true");
             this.captured = true;
             screen.setToDrag(this);
+            e.Handled = true;
         }
 
-        private void radioButton_Checked(object sender, RoutedEventArgs e)
-        {
-            screen.setCurrSelected(this);
-            canvas.Background = Brushes.Cornsilk;       
-        }
     }
 }

@@ -23,9 +23,9 @@ namespace WpfApplication1
         private CourseBlock[] allCourses;
         private CourseBlock toDrag;
         private Schedule schedule;
-        private bool mouseOnSchedule;
+        private bool mouseOnSchedule = true;
         private CourseBlock[] WLCourses = new CourseBlock[0];
-        private CourseBlock[] SCourses;
+        private CourseBlock[] SCourses = new CourseBlock[0];
         private CourseBlock[] CoursesToDrop = new CourseBlock[0];
         private CourseBlock currSelected;
 
@@ -123,7 +123,6 @@ namespace WpfApplication1
         public void setToDrag(CourseBlock toDrag)
         {
             this.toDrag = toDrag;
-            Console.WriteLine("Got here and set ToDrag");
         }
 
         //Search button on Search tab
@@ -256,16 +255,22 @@ namespace WpfApplication1
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             bool success;
-
-            if (mouseOnSchedule)//e.GetPosition(mainGrid).Y > scheduleCanvas.Margin.Left)//mouseOnSchedule)
+            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160)
             {           
                 success = schedule.tryToSchedule(toDrag);
                 if (success)
                 {
-                    Console.WriteLine("got in here");
+                    // Remove course from stack and all Courses
                     courses.Children.Remove(toDrag);
                     fakeDragObj.Visibility = Visibility.Hidden;
-                    // Add to drag to SCourses[]
+
+                    // Add course to Schedule
+                    Array.Resize(ref SCourses, SCourses.Length + 1);
+                    SCourses[SCourses.Length - 1] = toDrag;
+                    schedule.Update();
+
+                    // Set toDrag to null 
+                    this.toDrag = null;
                 }
                 else
                 {
