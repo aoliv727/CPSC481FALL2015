@@ -7,7 +7,7 @@ Intro
 Lec
 Ehud
 M,F,T
-4,6
+12,15
 STUFF AND THINGS
 34
 0
@@ -17,7 +17,7 @@ Second
 Lec
 Brad
 M,W
-6,7
+7,8
 STUFF AND THINGS
 100
 7
@@ -27,7 +27,7 @@ Third
 TUT 01
 Sammy
 R,F
-1,2
+10,13
 STUFF AND THINGS
 100
 7
@@ -37,6 +37,7 @@ Third
 TUT 01
 Sammy
 R,F
+<<<<<<< HEAD
 1,2
 STUFF AND THINGS
 80
@@ -48,4 +49,7 @@ Lec
 Brian
 R,F
 1,2
+=======
+16,19
+>>>>>>> Abi
 STUFF AND THINGS

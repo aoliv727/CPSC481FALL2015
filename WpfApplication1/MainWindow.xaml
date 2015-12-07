@@ -2,18 +2,22 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Course Registration System" Height="800" Width="1200">
-    <Grid>
+
+    <Grid x:Name="mainGrid" MouseMove="OnMouseMove" MouseUp="OnMouseUp" MouseDown="OnMouseDown">
+        <!--
         <Grid.RowDefinitions>
             <RowDefinition Height="257*"/>
             <RowDefinition Height="512*"/>
         </Grid.RowDefinitions>
+         -->
         <TabControl HorizontalAlignment="Left" Height="769" VerticalAlignment="Top" Width="1192" Grid.RowSpan="2">
+
             <!-- Fall Tab -->
             <TabItem Header="FALL - 2015" FontWeight="Bold">
 
                 <!-- Grid Layout for the whole screen -->
-                <Grid Background="White" Margin="0,-4,0,4">
-                    <Grid HorizontalAlignment="Left" Height="741" VerticalAlignment="Top" Width="1186"/>
+                <Grid Background="White" Margin="0,-1,0,1">
+                    <Grid x:Name="secondGrid" HorizontalAlignment="Left" Height="741" VerticalAlignment="Top" Width="1186"/>
 
                     <!-- Quick Links Section : Create canvas to have buttons on top -->
 
@@ -40,11 +44,10 @@
 
                                 <!-- Search result canvas -->
                                 <Canvas HorizontalAlignment="Left" Height="479" Margin="10,183,0,0" VerticalAlignment="Top" Width="326">
-                                    <ScrollViewer Height="456" Width="316" Canvas.Top="10" BorderBrush="Black" BorderThickness="2" Canvas.Left="10">
+
+                                    <ScrollViewer x:Name="scrollViewer" Height="456" Width="316" Canvas.Top="10" BorderBrush="Black" BorderThickness="2" Canvas.Left="10">
                                         <StackPanel x:Name="courses" Height="auto" Width="auto"></StackPanel>
                                     </ScrollViewer>
-
-
                                 </Canvas>
                             </Grid>
                         </TabItem>
@@ -55,7 +58,7 @@
 
 
                                 </Canvas>
-                                <ScrollViewer HorizontalAlignment="Left" Height="670" VerticalAlignment="Top" Width="345">
+                                <ScrollViewer HorizontalAlignment="Left" Height="660" VerticalAlignment="Top" Width="316" Margin="0,10,0,0">
                                     <StackPanel x:Name="WL_List"/>
                                 </ScrollViewer>
                             </Grid>
@@ -69,7 +72,7 @@
                                     <Label Content="Search for course to swap with:" Height="28" Canvas.Left="10" Canvas.Top="48" Width="315" FontSize="14"/>
 
                                     <Canvas HorizontalAlignment="Left" Height="411" VerticalAlignment="Top" Width="326" Canvas.Left="10" Canvas.Top="251">
-                                        <ScrollViewer Height="350" Width="325">
+                                        <ScrollViewer Height="350" Width="316">
                                             <StackPanel x:Name="SwapCourses" Height="auto" Width="auto"></StackPanel>
                                         </ScrollViewer>
                                     </Canvas>
@@ -107,15 +110,15 @@
                     </TabControl>
 
                     <!-- Schedule Section-->
-                    <Canvas HorizontalAlignment="Left" Height="686" Margin="382,24,0,0" VerticalAlignment="Top" Width="784">
-                        <Border BorderBrush="Black" BorderThickness="1" Height="686" Width="784"/>
+                    <Canvas x:Name="scheduleCanvas" HorizontalAlignment="Left" Height="686" Margin="382,24,0,0" VerticalAlignment="Top" Width="784">
+                        <Border x:Name="scheduleBorder" BorderBrush="Black" BorderThickness="1" Height="686" Width="784"/>
                         <Label Content="Schedule" Height="35" Width="103" FontFamily="Times New Roman" FontSize="22" Canvas.Left="10" FontWeight="Normal">
                             <Label.Effect>
                                 <DropShadowEffect/>
                             </Label.Effect>
                         </Label>
-                        <Button Content="ENROLL" Height="38" Canvas.Left="647" Canvas.Top="640" Width="126" FontSize="14" FontWeight="Normal"/>
-                        <Button Content="DROP" Height="38" Canvas.Left="516" Canvas.Top="640" Width="126" FontSize="14" FontWeight="Normal"/>
+                        <Button Content="ENROLL" Height="38" Canvas.Left="647" Canvas.Top="640" Width="126" FontSize="14" FontWeight="Normal" Click="Button_Click_7"/>
+                        <Button Content="DROP" Height="38" Canvas.Left="516" Canvas.Top="640" Width="126" FontSize="14" FontWeight="Normal" Click="Button_Click_6"/>
                     </Canvas>
 
                 </Grid>
@@ -126,6 +129,10 @@
                 <Grid Background="White"/>
             </TabItem>
         </TabControl>
-
+        <Rectangle x:Name="fakeDragObj" HorizontalAlignment="Left" Height="146" Margin="775,44,0,0" VerticalAlignment="Top" Width="299" Visibility="Hidden" AllowDrop="True">
+            <Rectangle.Fill>
+                <SolidColorBrush Color="#FFC1BFEC" Opacity="0.5"/>
+            </Rectangle.Fill>
+        </Rectangle>
     </Grid>
 </Window>

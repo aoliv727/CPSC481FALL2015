@@ -33,11 +33,39 @@ namespace WpfApplication1
         private String details;
         private Boolean isErolled;
         private Boolean isWaitlisted;
+        private Boolean captured;
+        private Boolean isClosed;
+
+
+        public CourseBlock(CourseBlock c)
+        {
+            this.seats = c.seats;
+            this.waitSeat = c.waitSeat;
+            this.prof = c.prof;
+            this.course = c.course;
+            this.courseNum = c.courseNum;
+            this.courseName = c.courseName;
+            this.days = c.days;
+            this.times = c.times;
+            this.type = c.type;
+            this.details = c.details;
+            this.isErolled = c.isErolled;
+            this.isWaitlisted = c.isWaitlisted;
+            this.isClosed = c.isClosed;
+            this.screen = c.screen;
+            this.captured = c.captured;
+
+            this.Width = c.Width;
+            this.Height = c.Height;
+            this.Margin = c.Margin;
+        }
+
 
         public CourseBlock(int seats, int waitSeat, String prof, String course, String courseName, String[] days, int[] times, String type, String details, int courseNum, MainWindow screen)
         {
             String printDays = null;
             InitializeComponent();
+
             // Set all the private Variables
             this.screen = screen;
             this.seats = seats;
@@ -67,33 +95,36 @@ namespace WpfApplication1
 
            if(isWaitlisted)
             {
-                triangle.Visibility = System.Windows.Visibility.Visible;
-                square.Visibility = System.Windows.Visibility.Hidden;
-                WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+                triangle.Visibility = Visibility.Visible;
+                square.Visibility = Visibility.Hidden;
+                WaitlistBtn.Visibility = Visibility.Hidden;
             }
            else if (seats == 100 && waitSeat == 10)
             {
-                square.Visibility = System.Windows.Visibility.Visible;
+                isClosed = true;
+                square.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
             }
             else if (seats == 100 && waitSeat != 10)
             {
-                square.Visibility = System.Windows.Visibility.Visible;
-                WaitlistBtn.Visibility = System.Windows.Visibility.Visible;
+                isClosed = true;
+                square.Visibility = Visibility.Visible;
+                WaitlistBtn.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Blue;
             }
             else
             {
-                circle.Visibility = System.Windows.Visibility.Visible;
+                circle.Visibility = Visibility.Visible;
                 border.BorderBrush = Brushes.Green;
             }
         }
 
+        // WaitList Button
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            triangle.Visibility = System.Windows.Visibility.Visible;
-            square.Visibility = System.Windows.Visibility.Hidden;
-            WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+            triangle.Visibility = Visibility.Visible;
+            square.Visibility = Visibility.Hidden;
+            WaitlistBtn.Visibility = Visibility.Hidden;
             isWaitlisted = true;
             screen.AddtoWaitList(this.seats, this.waitSeat, this.prof, this.course, this.courseName, this.days, this.times, this.type, this.details, this.courseNum);
         }
@@ -166,5 +197,41 @@ namespace WpfApplication1
         {
             return this.isWaitlisted;
         }
+
+        public void setisClosed(Boolean isClosed)
+        {
+            this.isClosed = isClosed;
+        }
+
+        public Boolean getisClosed()
+        {
+            return this.isClosed;
+        }
+
+        public void setCaptured(Boolean captured)
+        {
+            this.captured = captured;
+        }
+
+        public Boolean getCaptured()
+        {
+            return this.captured;
+        }
+        
+
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            this.captured = false;
+            screen.setToDrag(null);
+            e.Handled = true;
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            this.captured = true;
+            screen.setToDrag(this);
+            e.Handled = true;
+        }
+
     }
 }

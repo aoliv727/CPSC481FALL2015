@@ -21,15 +21,29 @@ namespace WpfApplication1
     public partial class MainWindow : Window
     {
         private CourseBlock[] allCourses;
+        private CourseBlock toDrag;
+        private Schedule schedule;
+        private bool mouseOnSchedule = true;
         private CourseBlock[] WLCourses = new CourseBlock[0];
+<<<<<<< HEAD
         private SwapCourseBlock[] S_courses;
         private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
         private int swapIndex; //index of the selected course you're going to swap out of from SCourses
+=======
+        private CourseBlock[] SCourses = new CourseBlock[0];
+        private CourseBlock[] CoursesToDrop = new CourseBlock[0];
+        private CourseBlock currSelected;
+>>>>>>> Abi
 
         public MainWindow()
         {
             InitializeComponent();
+            schedule = new Schedule(this);
+            scheduleCanvas.Children.Add(schedule);
+            Canvas.SetLeft(schedule, 10);
+            Canvas.SetTop(schedule, 40);
             fileReader();
+
             for (int i = 0; i < allCourses.Length; i++)
             {
                 this.courses.Children.Add(allCourses[i]);
@@ -42,7 +56,6 @@ namespace WpfApplication1
             int seats, waitSeat, courseNum;
             String prof, course, courseName, type, details;
             String[] days;
-            char[] splitter = { ',' };
             int[] times;
 
             System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
@@ -58,8 +71,8 @@ namespace WpfApplication1
                 courseName = file.ReadLine();
                 type = file.ReadLine();
                 prof = file.ReadLine();
-                days = file.ReadLine().Split(splitter);
-                String[] arr = file.ReadLine().Split(splitter);
+                days = file.ReadLine().Split(',');
+                String[] arr = file.ReadLine().Split(',');
                 times = new int[arr.Length];
                 for (int j = 0; j < arr.Length; j++)
                 {
@@ -111,6 +124,7 @@ namespace WpfApplication1
 
         }
 
+<<<<<<< HEAD
         //Swap selection thing
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -125,6 +139,16 @@ namespace WpfApplication1
                     k = SCourses.Length;
                 }
             }*/
+=======
+        //Swap Combo box
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (SCourses == null) { return; }
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                Swap_combo.Items.Add(SCourses[i].getCourse()+" "+SCourses[i].getCourseNum()+" "+SCourses[i].getCourseName());
+            }
+>>>>>>> Abi
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -132,11 +156,36 @@ namespace WpfApplication1
 
         }
 
+        //Switch Tutorial Button
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
 
         }
 
+        
+
+        private void OnMouseMove(object sender, MouseEventArgs e)
+        {
+            if (toDrag == null) { return; }
+            Thickness margin = (toDrag.Margin);
+            toDrag.Visibility = Visibility.Hidden;
+            fakeDragObj.Visibility = Visibility.Visible;
+           
+            if (toDrag.getCaptured())
+            {
+                fakeDragObj.Margin = margin;
+                margin.Left = e.GetPosition(mainGrid).X - (fakeDragObj.Width / 2);
+                margin.Top = e.GetPosition(mainGrid).Y - (fakeDragObj.Height / 2);
+                fakeDragObj.Margin = margin;
+            }
+        }
+
+        public void setToDrag(CourseBlock toDrag)
+        {
+            this.toDrag = toDrag;
+        }
+
+        //Search button on Search tab
         private void Button_Click_3(object sender, RoutedEventArgs e)
         {
             this.courses.Children.Clear();
@@ -217,11 +266,13 @@ namespace WpfApplication1
 
         }
 
+        // Search Combo box in search tab
         private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
         {
             
         }
 
+<<<<<<< HEAD
         public void uncheckSwap(SwapCourseBlock[] S_courses)
         {
             int i = 0;
@@ -233,6 +284,9 @@ namespace WpfApplication1
         }
 
         //Swap search button
+=======
+        //Search Button on Swap tab
+>>>>>>> Abi
         private void Button_Click_4(object sender, RoutedEventArgs e)
         {
             this.SwapCourses.Children.Clear();
@@ -288,6 +342,7 @@ namespace WpfApplication1
 
         }
 
+<<<<<<< HEAD
         //SWAP BUTTON
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
@@ -326,5 +381,102 @@ namespace WpfApplication1
             }*/
         }
 
+=======
+        private void OnMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            bool success;
+            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160)
+            {           
+                success = schedule.tryToSchedule(toDrag);
+                if (success)
+                {
+                    // Remove course from stack and all Courses
+                    courses.Children.Remove(toDrag);
+                    fakeDragObj.Visibility = Visibility.Hidden;
+
+                    // Add course to Schedule
+                    Array.Resize(ref SCourses, SCourses.Length + 1);
+                    SCourses[SCourses.Length - 1] = toDrag;
+                    schedule.Update();
+
+                    // Set toDrag to null 
+                    this.toDrag = null;
+                }
+                else
+                {
+                    if (e.Handled == false)
+                    {
+                        toDrag.Visibility = Visibility.Visible;
+                        fakeDragObj.Visibility = Visibility.Hidden;
+                        this.toDrag = null;
+                    }
+                }
+            }
+            else
+            {
+                if (e.Handled == false && toDrag != null)
+                {
+                    toDrag.Visibility = Visibility.Visible;
+                    fakeDragObj.Visibility = Visibility.Hidden;
+                    this.toDrag = null;
+                }
+            }
+            
+        }
+
+        public void setOnSchedule(bool onSchedule)
+        {
+            this.mouseOnSchedule = onSchedule;
+        }
+
+        private void OnMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(e.Handled == true) { return; }
+        }
+
+        public void setCurrSelected(CourseBlock currSelected)
+        {
+            this.currSelected = currSelected;
+        }
+
+        //Swap Button
+        private void Button_Click_5(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        // Drop Button
+        private void Button_Click_6(object sender, RoutedEventArgs e)
+        {
+            CourseBlock[] temp = new CourseBlock[0];
+
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                for (int j = 0; j < CoursesToDrop.Length; j++)
+                {
+                    if(SCourses[i] != CoursesToDrop[j])
+                    {
+                        Array.Resize(ref temp, temp.Length + 1);
+                        temp[i] = SCourses[i];
+                    }
+                }
+
+            }
+
+            this.SCourses = temp;
+            schedule.Update();
+        }
+
+        public void setCoursesToDrop(CourseBlock[] coursesToDrop)
+        {
+            this.CoursesToDrop = coursesToDrop;
+        }
+
+        //Enroll Button
+        private void Button_Click_7(object sender, RoutedEventArgs e)
+        {
+
+        }
+>>>>>>> Abi
     }
 }

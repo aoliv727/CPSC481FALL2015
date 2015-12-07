@@ -10,11 +10,19 @@ none
 false
 DEBUG;TRACE
 U:\481Project\WpfApplication1\App.xaml
+<<<<<<< HEAD
 3-310223849
 
 7-808813592
 12-1401562060
 CourseBlock.xaml;MainWindow.xaml;SwapCourseBlock.xaml;
+=======
+3477542829
+
+7-2141234003
+12-1401562060
+CourseBlock.xaml;MainWindow.xaml;Schedule.xaml;
+>>>>>>> Abi
 
 False
 
