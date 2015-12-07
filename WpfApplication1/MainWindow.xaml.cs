@@ -29,8 +29,11 @@ namespace WpfApplication1
         private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
         private int swapIndex; //index of the selected course you're going to swap out of from SCourses
         private CourseBlock[] SCourses = new CourseBlock[0];
-        private CourseBlock[] CoursesToDrop = new CourseBlock[0];
         private CourseBlock currSelected;
+        private byte clear = 255;
+        private byte stColor1 = 193;
+        private byte stColor2 = 191;
+        private byte stColor3 = 236;
 
 
         public MainWindow()
@@ -41,11 +44,6 @@ namespace WpfApplication1
             Canvas.SetLeft(schedule, 10);
             Canvas.SetTop(schedule, 40);
             fileReader();
-
-            for (int i = 0; i < allCourses.Length; i++)
-            {
-                this.courses.Children.Add(allCourses[i]);
-            }
             populateSwap();
         }
 
@@ -84,36 +82,10 @@ namespace WpfApplication1
         //Populate the swap combobox dropdown thing
         private void populateSwap()
         {
-            int seats, waitSeat, courseNum;
-            String prof, course, courseName, type, details;
-            String[] days;
-            char[] splitter = { ',' };
-            int[] times;
-
-            System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
-            int numCourses = int.Parse(file.ReadLine());
-            allCourses = new CourseBlock[numCourses];
-
-            for (int i = 0; i < numCourses; i++)
+            if (SCourses == null) { return; }
+            for (int i = 0; i < SCourses.Length; i++)
             {
-                seats = int.Parse(file.ReadLine());
-                waitSeat = int.Parse(file.ReadLine());
-                course = file.ReadLine();
-                courseNum = int.Parse(file.ReadLine());
-                courseName = file.ReadLine();
-                //put it in the combobox
-                Swap_combo.Items.Add(course + courseNum.ToString() + " " + courseName);
-                type = file.ReadLine();
-                prof = file.ReadLine();
-                days = file.ReadLine().Split(splitter);
-                String[] arr = file.ReadLine().Split(splitter);
-                times = new int[arr.Length];
-                for (int j = 0; j < arr.Length; j++)
-                {
-                    times[j] = int.Parse(arr[j]);
-                }
-                details = file.ReadLine();
-                allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
+                Swap_combo.Items.Add(SCourses[i].getCourse() + " " + SCourses[i].getCourseNum() + " " + SCourses[i].getCourseName());
             }
         }
 
@@ -381,7 +353,7 @@ namespace WpfApplication1
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             bool success;
-            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160)
+            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160 && toDrag != null)
             {           
                 success = schedule.tryToSchedule(toDrag);
                 if (success)
@@ -393,7 +365,7 @@ namespace WpfApplication1
                     // Add course to Schedule
                     Array.Resize(ref SCourses, SCourses.Length + 1);
                     SCourses[SCourses.Length - 1] = toDrag;
-                    schedule.Update();
+                    schedule.Update(stColor1,stColor2,stColor3);
 
                     // Set toDrag to null 
                     this.toDrag = null;
@@ -435,34 +407,17 @@ namespace WpfApplication1
             this.currSelected = currSelected;
         }
 
-        // Drop Button
+        // DROP BUTTON
         private void Button_Click_6(object sender, RoutedEventArgs e)
         {
-            CourseBlock[] temp = new CourseBlock[0];
-
-            for (int i = 0; i < SCourses.Length; i++)
-            {
-                for (int j = 0; j < CoursesToDrop.Length; j++)
-                {
-                    if(SCourses[i] != CoursesToDrop[j])
-                    {
-                        Array.Resize(ref temp, temp.Length + 1);
-                        temp[i] = SCourses[i];
-                    }
-                }
-
-            }
-
-            this.SCourses = temp;
-            schedule.Update();
+            schedule.Update(clear, clear, clear);
+            schedule.ReColorSelected(clear,clear,clear);
+            schedule.setSelected(null);
+            this.SCourses = schedule.getScheduledCourses();
+            schedule.Update(stColor1,stColor2,stColor3);
         }
 
-        public void setCoursesToDrop(CourseBlock[] coursesToDrop)
-        {
-            this.CoursesToDrop = coursesToDrop;
-        }
-
-        //Enroll Button
+        //ENROLL BUTTON
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
 
