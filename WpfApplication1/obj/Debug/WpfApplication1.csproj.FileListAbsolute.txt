@@ -16,7 +16,6 @@ U:\481Project\WpfApplication1\obj\Debug\WpfApplication1.g.resources
 U:\481Project\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
 U:\481Project\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
 <<<<<<< HEAD
-<<<<<<< HEAD
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\bin\Debug\WpfApplication1.exe.config
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.exe
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.pdb
@@ -32,8 +31,6 @@ C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.g.resources
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.Properties.Resources.resources
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
-U:\481Project\WpfApplication1\obj\Debug\Schedule.baml
-U:\481Project\WpfApplication1\obj\Debug\Schedule.g.cs
 =======
 C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\bin\Debug\WpfApplication1.exe.config
 C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfApplication1\obj\Debug\WpfApplication1.exe
@@ -67,15 +64,12 @@ C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfAppl
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\SwapCourseBlock.baml
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
-U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.baml
-U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
 >>>>>>> master
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.baml
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.g.cs
 >>>>>>> Abi
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\Schedule.baml
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\Schedule.g.cs
-=======
 U:\481Project\WpfApplication1\obj\Debug\WpfApplication1.exe
 U:\481Project\WpfApplication1\obj\Debug\WpfApplication1.pdb
 >>>>>>> 434149af175851ea50c519feb83d3d4a36c1cf65

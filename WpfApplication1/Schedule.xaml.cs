@@ -22,10 +22,6 @@ namespace WpfApplication1
     public partial class Schedule : UserControl
     {
         private MainWindow screen;
-<<<<<<< HEAD
-        private CourseBlock[] scheduledCourses; // takes this thing
-        private CourseBlock[] dropList;
-=======
         private CourseBlock[] scheduledCourses;
         private CourseBlock[] selected;
         private byte stColor1 = 193;
@@ -34,7 +30,6 @@ namespace WpfApplication1
         private byte ctColor1 = 255;
         private byte ctColor2 = 127;
         private byte ctColor3 = 80;
->>>>>>> 434149af175851ea50c519feb83d3d4a36c1cf65
 
         public Schedule(MainWindow screen)
         {
@@ -59,14 +54,6 @@ namespace WpfApplication1
                 {
                     this.selected[i] = selected[i];
                 }
-            }
-        }
-
-        public void setScheduledCourses(CourseBlock[] scheduledCourses)
-        {
-            for (int i = 0; i < scheduledCourses.Length; i++)
-            {
-                this.scheduledCourses[i] = scheduledCourses[i];
             }
         }
 
@@ -118,19 +105,6 @@ namespace WpfApplication1
             return success;
         }
 
-<<<<<<< HEAD
-        private void DropCourses()
-        {
-            screen.setCoursesToDrop(this.dropList);
-        }
-
-        private void AddToDroplist()
-        {
-
-        }
-
-=======
->>>>>>> 434149af175851ea50c519feb83d3d4a36c1cf65
         public void Update(byte c1, byte c2, byte c3)
         {
             if (scheduledCourses == null) { return; }
