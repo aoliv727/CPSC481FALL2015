@@ -18,7 +18,7 @@
                 <Label x:Name="proflbl" Content="ProfName" Height="26" Canvas.Left="53" Canvas.Top="63" Width="186"/>
                 <Label x:Name="timeslbl" Content="Times" Height="26" Canvas.Left="10" Canvas.Top="86" Width="229"/>
                 <Label x:Name="detailslbl" Content="Hover for Details" Height="23" Canvas.Left="10" Canvas.Top="112" Width="117" Foreground="#FF4B87F0"/>
-                <!--<Button x:Name="WaitlistBtn" Content="Waitlist" Height="24" Canvas.Left="187" Canvas.Top="112" Width="102" Click="Button_Click" BorderBrush="#FF040404" Background="White" FontSize="14" ToolTip="Click To Waitlist in this Course" Margin="0" Visibility="Hidden"/> -->
+               <!-- <Button x:Name="WaitlistBtn" Content="Waitlist" Height="24" Canvas.Left="187" Canvas.Top="112" Width="102" Click="Button_Click" BorderBrush="#FF040404" Background="White" FontSize="14" ToolTip="Click To Waitlist in this Course" Margin="0" Visibility="Hidden"/> -->
                 <Ellipse x:Name="circle" Fill="#FF4CD62D" Height="35" Canvas.Left="254" Canvas.Top="10" Width="35" ToolTip="Class is Open" Visibility="Hidden"/>
                 <Rectangle x:Name="square" Fill="#FF2379CF" Height="35" Canvas.Left="254" Canvas.Top="10" Width="35" ToolTip="Class is Closed" Visibility="Hidden"/>
                 <Label x:Name="courseNumlbl" Content="000" Height="25" Canvas.Left="52" Canvas.Top="11" Width="33"/>
