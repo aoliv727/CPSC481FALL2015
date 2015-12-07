@@ -58,3 +58,5 @@ C:\Users\isekl_000\Documents\Visual Studio 2015\Projects\CPSC481FALL2015\WpfAppl
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\WpfApplication1.csproj.GenerateResource.Cache
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\SwapCourseBlock.baml
 \\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
+U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.baml
+U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs

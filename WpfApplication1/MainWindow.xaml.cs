@@ -265,17 +265,15 @@ namespace WpfApplication1
                         SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(), 
-<<<<<<< HEAD
                                                             allCourses[i].getCourseNum(), this, S_courses);
-=======
-                                                            allCourses[i].getCourseNum(), this);
+                        /*
                         if (allCourses[i].getisWaitlised())
                         {
                             temp.triangle.Visibility = System.Windows.Visibility.Visible;
                             temp.square.Visibility = System.Windows.Visibility.Hidden;
                             temp.WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
                         }
->>>>>>> Ibby
+                        */
                         S_courses[k] = temp;
                         k++;
                     }
