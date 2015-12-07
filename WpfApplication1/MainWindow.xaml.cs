@@ -150,7 +150,8 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if ((allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    if (allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum 
+                        || allCourses[i].getCourseNum() / 10 == courseNum)
                     {
                         j++;
                     }
@@ -162,12 +163,18 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    if (allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
                     {
                         CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(),
                                                             allCourses[i].getCourseNum(), this);
+                        if (allCourses[i].getisWaitlised())
+                        {
+                            temp.triangle.Visibility = System.Windows.Visibility.Visible;
+                            temp.square.Visibility = System.Windows.Visibility.Hidden;
+                            temp.WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+                        }
                         S_courses[k] = temp;
                         k++;
                     }
@@ -238,7 +245,8 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
+                         && allCourses[i].getType() == "Lec")
                     {
                         j++;
                     }
@@ -251,12 +259,23 @@ namespace WpfApplication1
                 if (allCourses[i].getCourse() == course)
                 {
                    
-                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised())) 
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) 
+                        && allCourses[i].getType() == "Lec") 
                     {
                         SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(), 
+<<<<<<< HEAD
                                                             allCourses[i].getCourseNum(), this, S_courses);
+=======
+                                                            allCourses[i].getCourseNum(), this);
+                        if (allCourses[i].getisWaitlised())
+                        {
+                            temp.triangle.Visibility = System.Windows.Visibility.Visible;
+                            temp.square.Visibility = System.Windows.Visibility.Hidden;
+                            temp.WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+                        }
+>>>>>>> Ibby
                         S_courses[k] = temp;
                         k++;
                     }
