@@ -83,3 +83,5 @@ U:\481Project\WpfApplication1\obj\Debug\SwapCourseBlock.g.cs
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.baml
 C:\Users\Abigail\Documents\Visual Studio 2015\Projects\481Project\WpfApplication1\obj\Debug\Schedule.g.cs
 >>>>>>> Abi
+\\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\Schedule.baml
+\\cs-fs01\Profiles\ug\ieliopou\Desktop\GitHub\481-project\WpfApplication1\obj\Debug\Schedule.g.cs

@@ -25,12 +25,16 @@ namespace WpfApplication1
         private Schedule schedule;
         private bool mouseOnSchedule = true;
         private CourseBlock[] WLCourses = new CourseBlock[0];
-        private SwapCourseBlock[] S_courses;
+        private SwapCourseBlock[] S_courses; //Courses you searched up
         private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
         private int swapIndex; //index of the selected course you're going to swap out of from SCourses
-        private CourseBlock[] SCourses = new CourseBlock[0];
+        private CourseBlock[] SCourses = new CourseBlock[0]; //Courses you're enrolled in
         private CourseBlock[] CoursesToDrop = new CourseBlock[0];
         private CourseBlock currSelected;
+        private byte clear = 255;
+        private byte stdColor1 = 193;
+        private byte stdColor2 = 191;
+        private byte stdColor3 = 236;
 
 
         public MainWindow()
@@ -81,15 +85,27 @@ namespace WpfApplication1
             }
         }
 
+        private void populateSwitch()
+        {
+
+        }
+
         //Populate the swap combobox dropdown thing
         private void populateSwap()
         {
-            int seats, waitSeat, courseNum;
+            if (SCourses == null) { return; }
+            Swap_combo.Items.Clear();
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                Swap_combo.Items.Add(SCourses[i].getCourse() + SCourses[i].getCourseNum() + " " + SCourses[i].getCourseName());
+            }
+            
+            /*int seats, waitSeat, courseNum;
             String prof, course, courseName, type, details;
             String[] days;
             char[] splitter = { ',' };
             int[] times;
-
+            
             System.IO.StreamReader file = new System.IO.StreamReader("../../res/CourseDatabase.txt");
             int numCourses = int.Parse(file.ReadLine());
             allCourses = new CourseBlock[numCourses];
@@ -114,7 +130,7 @@ namespace WpfApplication1
                 }
                 details = file.ReadLine();
                 allCourses[i] = new CourseBlock(seats, waitSeat, prof, course, courseName, days, times, type, details, courseNum, this);
-            }
+            }*/
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -126,17 +142,22 @@ namespace WpfApplication1
         //Swap selection thing
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-        /*    swapValueSelected = Swap_combo.Text;
-            swapValueSelected = swapValueSelected.Substring(8);//grabs from the 8th spot to the end (inclusive) (starts from 0)
-            int k = 0;
-            while (k < SCourses.Length)
+            swapValueSelected = Swap_combo.Text;
+
+            if (swapValueSelected.Length >= 8)
             {
-                if (SCourses[k].getCourseName() == swapValueSelected)
+                swapValueSelected = swapValueSelected.Substring(8);//grabs from the 8th spot to the end (inclusive) (starts from 0)
+                int k = 0;
+                while (k < SCourses.Length)
                 {
-                    swapIndex = k;
-                    k = SCourses.Length;
+                    if (SCourses[k].getCourseName() == swapValueSelected)
+                    {
+                        swapIndex = k;
+                        k = SCourses.Length;
+                    }
+                    k++;
                 }
-            }*/
+            }
         }
         //Swap Combo box
         /*
@@ -309,7 +330,7 @@ namespace WpfApplication1
                 if (allCourses[i].getCourse() == course)
                 {
                    
-                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) 
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) //He's checking for 500, 50, 5
                         && allCourses[i].getType() == "Lec") 
                     {
                         SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
@@ -342,7 +363,7 @@ namespace WpfApplication1
         //SWAP BUTTON
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
-         /*   //Find the course you want to swap into
+            //Find the course you want to swap into
             int i = -1;
             int j = 0;
             bool somethingSelected = false;
@@ -367,21 +388,37 @@ namespace WpfApplication1
                     if (SCourses[k].getTimes() == S_courses[i].getTimes() && SCourses[k].getCourseName() != swapValueSelected)
                     {
                         conflict = true;
-                        errors message;
+                       // errors message;
                     }
+                    k++;
                 }
                 if (conflict == false)
                 {
-                    SCourses[swapIndex] = S_courses[i];
+                    //SCourses[swapIndex] = S_courses[i];
+                    k = 0;
+                    while (k < allCourses.Length)
+                    {
+                        if (allCourses[k].getCourseName() == S_courses[i].getCourseName())
+                        {
+                            SCourses[swapIndex] = allCourses[k];
+                            schedule.Update(clear, clear, clear);
+                            populateSwap();
+                            schedule.setScheduledCourses(SCourses);
+                            schedule.Update(stdColor1, stdColor2, stdColor3);
+                           // populateSwap();
+                            k = allCourses.Length;
+                        }
+                        k++;
+                    }
                 }
-            }*/
+            }
         }
 
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
             bool success;
-            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160)
+            if (e.GetPosition(mainGrid).Y > 50 && e.GetPosition(mainGrid).Y < 731  && e.GetPosition(mainGrid).X > 386 && e.GetPosition(mainGrid).X < 1160 && toDrag != null)
             {           
                 success = schedule.tryToSchedule(toDrag);
                 if (success)
@@ -393,7 +430,8 @@ namespace WpfApplication1
                     // Add course to Schedule
                     Array.Resize(ref SCourses, SCourses.Length + 1);
                     SCourses[SCourses.Length - 1] = toDrag;
-                    schedule.Update();
+                    schedule.Update(stdColor1, stdColor2, stdColor3);
+                    populateSwap();
 
                     // Set toDrag to null 
                     this.toDrag = null;
@@ -454,7 +492,7 @@ namespace WpfApplication1
             }
 
             this.SCourses = temp;
-            schedule.Update();
+            schedule.Update(stdColor1, stdColor2, stdColor3);
         }
 
         public void setCoursesToDrop(CourseBlock[] coursesToDrop)

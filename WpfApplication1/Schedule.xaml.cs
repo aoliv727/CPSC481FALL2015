@@ -22,7 +22,7 @@ namespace WpfApplication1
     public partial class Schedule : UserControl
     {
         private MainWindow screen;
-        private CourseBlock[] scheduledCourses;
+        private CourseBlock[] scheduledCourses; // takes this thing
         private CourseBlock[] dropList;
 
         public Schedule(MainWindow screen)
@@ -32,6 +32,15 @@ namespace WpfApplication1
             grid.ShowGridLines = true;
             scheduledCourses = new CourseBlock[0];
             dropList = new CourseBlock[0];
+        }
+
+        public void setScheduledCourses(CourseBlock[] scheduledCourses)
+        {
+            //this.scheduledCourses = scheduledCourses;
+            for (int i = 0; i < scheduledCourses.Length; i++)
+            {
+                this.scheduledCourses[i] = scheduledCourses[i];
+            }
         }
 
         public bool tryToSchedule(CourseBlock course)
@@ -83,8 +92,10 @@ namespace WpfApplication1
 
         }
 
-        public void Update()
+        public void Update(byte c1, byte c2, byte c3)
         {
+            if (scheduledCourses == null) { return; }
+        
             // For every Course in schedule
             for (int i = 0; i < scheduledCourses.Length; i++)
             {
@@ -105,7 +116,7 @@ namespace WpfApplication1
                             for (int k = 0; k < timeDiff; k++)
                             {
                                Rectangle currNode = GetGridElement(startIndex, 1);
-                               currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(c1, c2, c3));
                                currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
                                startIndex++;
                             }
@@ -114,7 +125,7 @@ namespace WpfApplication1
                             for (int k = 0; k < timeDiff; k++)
                             {
                                 Rectangle currNode = GetGridElement(startIndex, 2);
-                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(c1, c2, c3));
                                 currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
                                 startIndex++;
                             }
@@ -123,7 +134,7 @@ namespace WpfApplication1
                             for (int k = 0; k < timeDiff; k++)
                             {
                                 Rectangle currNode = GetGridElement(startIndex, 3);
-                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(c1, c2, c3));
                                 currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
                                 startIndex++;
                             }
@@ -132,7 +143,7 @@ namespace WpfApplication1
                             for (int k = 0; k < timeDiff; k++)
                             {
                                 Rectangle currNode = GetGridElement(startIndex, 4);
-                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(c1, c2, c3));
                                 currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
                                 startIndex++;
                             }
@@ -141,7 +152,7 @@ namespace WpfApplication1
                             for (int k = 0; k < timeDiff; k++)
                             {
                                 Rectangle currNode = GetGridElement(startIndex, 5);
-                                currNode.Fill = new SolidColorBrush(Color.FromRgb(193, 191, 236));
+                                currNode.Fill = new SolidColorBrush(Color.FromRgb(c1, c2, c3));
                                 currNode.ToolTip = scheduledCourses[i].getCourse() + scheduledCourses[i].getCourseNum() + scheduledCourses[i].getCourseName();
                                 startIndex++;
                             }
