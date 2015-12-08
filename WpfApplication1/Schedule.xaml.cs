@@ -45,6 +45,11 @@ namespace WpfApplication1
             return this.scheduledCourses;
         }
 
+        public CourseBlock[] getSelected()
+        {
+            return this.scheduledCourses;
+        }
+
         public void setSelected(CourseBlock[] selected)
         {
             if (selected == null) { this.selected = new CourseBlock[0]; }
@@ -59,7 +64,6 @@ namespace WpfApplication1
 
         public void setScheduledCourses(CourseBlock[] scheduledCourses)
         {
-            //this.scheduledCourses = scheduledCourses;
             for (int i = 0; i < scheduledCourses.Length; i++)
             {
                 this.scheduledCourses[i] = scheduledCourses[i];
@@ -240,11 +244,68 @@ namespace WpfApplication1
                }
                this.selected = temp;
            }
-          // DropCourses();
+       }
+
+        public void makeError(CourseBlock course)
+       {
+             for (int j = 0; j < course.getDays().Length; j++)
+               {
+                   String[] days = course.getDays();
+                   int startime = course.getTimes()[0];
+                   int endtime = course.getTimes()[1];
+                   int startIndex = startime - 6;
+                   int timeDiff = endtime - startime;
+
+                   // Color the schedule according to the day and times
+                   switch (days[j])
+                   {
+                       case "M":
+                           for (int k = 0; k < timeDiff; k++)
+                           {
+                               Rectangle currNode = GetGridElement(startIndex, 1);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(189, 75, 75));
+                               startIndex++;
+                           }
+                           break;
+                       case "T":
+                           for (int k = 0; k < timeDiff; k++)
+                           {
+                               Rectangle currNode = GetGridElement(startIndex, 2);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(189, 75, 75));
+                               startIndex++;
+                           }
+                           break;
+                       case "W":
+                           for (int k = 0; k < timeDiff; k++)
+                           {
+                               Rectangle currNode = GetGridElement(startIndex, 3);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(189, 75, 75));
+                               startIndex++;
+                           }
+                           break;
+                       case "R":
+                           for (int k = 0; k < timeDiff; k++)
+                           {
+                               Rectangle currNode = GetGridElement(startIndex, 4);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(189, 75, 75));
+                               startIndex++;
+                           }
+                           break;
+                       case "F":
+                           for (int k = 0; k < timeDiff; k++)
+                           {
+                               Rectangle currNode = GetGridElement(startIndex, 5);
+                               currNode.Fill = new SolidColorBrush(Color.FromRgb(189, 75, 75));
+                               startIndex++;
+                           }
+                           break;
+                   }
+               }
        }
 
        public void ReColorSelected(byte c1, byte c2, byte c3)
        {
+           // For every course in the selected array
            for (int i = 0; i < selected.Length; i++)
            {
                // For every Day in that Course

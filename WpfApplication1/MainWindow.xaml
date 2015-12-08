@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Course Registration System" Height="800" Width="1200">
 
-    <Grid x:Name="mainGrid" MouseMove="OnMouseMove" MouseUp="OnMouseUp" MouseDown="OnMouseDown">
+    <Grid x:Name="mainGrid" MouseMove="OnMouseMove" MouseUp="OnMouseUp" MouseDown="OnMouseDown" KeyDown="OnKeyDown">
         <!--
         <Grid.RowDefinitions>
             <RowDefinition Height="257*"/>
@@ -34,7 +34,7 @@
                                         </Label.Effect>
                                     </Label>
                                     <Label Content="Subject : " Height="25" Canvas.Left="10" Canvas.Top="53" Width="76"/>
-                                    <ComboBox x:Name="S_Subject" Height="25" Canvas.Left="74" Canvas.Top="57" Width="187" SelectionChanged="ComboBox_SelectionChanged_1">
+                                    <ComboBox x:Name="S_Subject" Height="25" Canvas.Left="74" Canvas.Top="57" Width="187">
                                         <ComboBoxItem Content="CPSC"/>
                                         <ComboBoxItem Content="STAT"/>
                                     </ComboBox>
@@ -63,7 +63,7 @@
                                 </ScrollViewer>
                             </Grid>
                         </TabItem>
-                        <TabItem Header="Swap" FontWeight="Bold" Height="24" VerticalAlignment="Bottom">
+                        <TabItem Header="Swap Lectures" FontWeight="Bold" Height="24" VerticalAlignment="Bottom">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="603" VerticalAlignment="Top" Width="335">
                                     <ComboBox x:Name="Swap_combo" Height="24" Canvas.Left="10" Canvas.Top="10" Width="315" SelectionChanged="ComboBox_SelectionChanged">
@@ -72,7 +72,7 @@
                                     <Label Content="Search for course to swap with:" Height="28" Canvas.Left="10" Canvas.Top="48" Width="315" FontSize="14"/>
 
                                     <Canvas HorizontalAlignment="Left" Height="411" VerticalAlignment="Top" Width="326" Canvas.Left="10" Canvas.Top="251">
-                                        <ScrollViewer Height="350" Width="316">
+                                        <ScrollViewer x:Name="swapScrollViewer" Height="350" Width="316">
                                             <StackPanel x:Name="SwapCourses" Height="auto" Width="auto"></StackPanel>
                                         </ScrollViewer>
                                     </Canvas>
@@ -98,12 +98,14 @@
                         <TabItem Header="Switch Tutorial" FontWeight="Bold">
                             <Grid Background="White">
                                 <Canvas HorizontalAlignment="Left" Height="658" VerticalAlignment="Top" Width="335">
-                                    <Border BorderBrush="Black" BorderThickness="2" Height="398" Width="299" Canvas.Top="51" Canvas.Left="7"/>
-                                    <ScrollBar HorizontalAlignment="Left" Height="398" VerticalAlignment="Top" Width="26" Canvas.Left="306" Canvas.Top="51"/>
-                                    <ComboBox Height="24" Canvas.Left="10" Canvas.Top="10" Width="315">
+
+                                    <ComboBox x:Name="switch_combo" Height="24" Canvas.Left="10" Canvas.Top="10" Width="315" SelectionChanged="ComboBox_SelectionChanged_2">
                                         <ComboBoxItem Content="-- Select tutorial to switch--" IsSelected="True"/>
                                     </ComboBox>
                                     <Button Content="SWITCH" Height="35" Canvas.Left="214" Canvas.Top="597" Width="94" Click="Button_Click_2" FontWeight="Normal" FontSize="14"/>
+                                    <ScrollViewer Height="515" Canvas.Left="10" Canvas.Top="57" Width="316">
+                                        <StackPanel x:Name="switchStack" Height="auto" Width="auto"></StackPanel>
+                                    </ScrollViewer>
                                 </Canvas>
                             </Grid>
                         </TabItem>
@@ -111,7 +113,7 @@
 
                     <!-- Schedule Section-->
                     <Canvas x:Name="scheduleCanvas" HorizontalAlignment="Left" Height="686" Margin="382,24,0,0" VerticalAlignment="Top" Width="784">
-                        <Border x:Name="scheduleBorder" BorderBrush="Black" BorderThickness="1" Height="686" Width="784"/>
+                        <Border x:Name="scheduleBorder" BorderBrush="Black" BorderThickness="1" Height="686" Width="784" Background="White"/>
                         <Label Content="Schedule" Height="35" Width="103" FontFamily="Times New Roman" FontSize="22" Canvas.Left="10" FontWeight="Normal">
                             <Label.Effect>
                                 <DropShadowEffect/>
@@ -134,5 +136,13 @@
                 <SolidColorBrush Color="#FFC1BFEC" Opacity="0.5"/>
             </Rectangle.Fill>
         </Rectangle>
+        <Canvas x:Name="errorCanvas" HorizontalAlignment="Left" Height="246" Margin="31,81,0,0" VerticalAlignment="Top" Width="351" Background="#FF34AA85" Opacity="0.75" OpacityMask="White" Visibility="Hidden">
+            <Button Content="X" Height="29" Canvas.Left="310" Canvas.Top="10" Width="31" Click="Button_Click_1" Background="#FF34AA85" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold"/>
+            <TextBox x:Name="errorTextBox" Height="205" Canvas.Left="10" TextWrapping="Wrap" Text="TextBox" Canvas.Top="21" Width="300" Background="#FF34AA85" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold"/>
+        </Canvas>
+        <Canvas x:Name="enrolledCanvas" HorizontalAlignment="Left" Height="246" Margin="622,310,0,0" VerticalAlignment="Top" Width="351" Background="#FF34AA85" Opacity="0.75" OpacityMask="White" Visibility="Hidden">
+            <Button x:Name="enrolledSuccessBtn" Content="X" Height="29" Canvas.Left="310" Canvas.Top="10" Width="31" Click="Button_Click_1" Background="#FF34AA85" BorderBrush="{x:Null}" FontSize="22" FontWeight="Bold"/>
+            <TextBox x:Name="enrolledTextBox" Height="205" Canvas.Left="10" TextWrapping="Wrap" Text="TextBox" Canvas.Top="21" Width="300" Background="#FF34AA85" BorderBrush="{x:Null}" FontSize="18" FontWeight="Bold"/>
+        </Canvas>
     </Grid>
 </Window>

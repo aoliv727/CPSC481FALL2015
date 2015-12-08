@@ -1,51 +1,111 @@
-﻿5
-40
+﻿11
+97
 10
 CPSC
 431
-Intro
+Introduction to DataStructures
 Lec
-Ehud
-M,F,T
-12,15
-STUFF AND THINGS
-34
-0
+Dr.A
+M,W,F
+7,8
+Learn about DataStructures
+97
+10
+CPSC
+431
+Introduction to DataStructures - 01
+TUT
+none
+M,W
+12,13
+TUT-01 for CPSC 431 Introduction to DataStructures
+97
+10
+CPSC
+431
+Introduction to DataStructures - 02
+TUT
+none
+T,W
+9,10
+TUT-02 for CPSC 431 Introduction to DataStructures
+100
+9
+CPSC
+431
+Introduction to DataStructures - 03
+TUT
+none
+W,R
+16,17
+TUT-03 for CPSC 431 Introduction to DataStructures
+97
+10
 CPSC
 560
-Second
+Compter Graphic level 3
 Lec
-Brad
+Dr.Brad
+M,R
+9,11
+Create complex leveling and Platform design
+97
+10
+CPSC
+560
+Compter Graphic level 3 - 01 
+TUT
+none
 M,W
-7,8
-STUFF AND THINGS
-40
-7
+14,15
+TUT-01 for CPSC 560 Compter Graphic level 3
+97
+10
 CPSC
+411
+Complex Compliers
+Lec
+Dr.B
+M,R
+9,11
+Make your own complier to pass
+97
+10
+CPSC
+411
+Complex Compliers - 01 
+TUT
+none
+W,R
+11,12
+TUT-01 for CPSC 411 Complex Compliers
 100
-Third
-TUT 01
-Sammy
-R,F
+9
+CPSC
+300
+History of Computer Science
+Lec
+Dr.K
+T,R
 10,13
-STUFF AND THINGS
-40
-7
+Alan Turring and the First computing machine
+97
+10
 CPSC
-101
-Third
-TUT 01
-Sammy
-R,F
-12,14
-STUFF AND THINGS
-100
-7
+300
+History of Computer Science - 01 
+TUT
+none
+T,F
+16,17
+TUT-01 for CPSC 300 History of Computer Science
+97
+10
 CPSC
 555
 Introduction to Computability
 Lec
-Brian
-R,F
-16,19
-STUFF AND THINGS
+Dr.Brian
+T,F
+10,12
+Learn to type and excel

@@ -100,6 +100,27 @@ namespace WpfApplication1
             }*/
         }
         
+        public SwapCourseBlock(SwapCourseBlock c)
+        {
+
+            this.seats = c.seats;
+            this.waitSeat = c.waitSeat;
+            this.prof = c.prof;
+            this.course = c.course;
+            this.courseNum = c.courseNum;
+            this.courseName = c.courseName;
+            this.days = c.days;
+            this.times = c.times;
+            this.type = c.type;
+            this.details = c.details;
+            this.isErolled = c.isErolled;
+            this.isWaitlisted = c.isWaitlisted;
+            this.screen = c.screen;
+
+            this.Width = c.Width;
+            this.Height = c.Height;
+            this.Margin = c.Margin;
+        }
 
         private void SwapSelect(object sender, MouseButtonEventArgs e)
         {

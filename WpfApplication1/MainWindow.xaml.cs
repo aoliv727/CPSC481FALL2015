@@ -23,12 +23,14 @@ namespace WpfApplication1
         private CourseBlock[] allCourses;
         private CourseBlock toDrag;
         private Schedule schedule;
-        private bool mouseOnSchedule = true;
         private CourseBlock[] WLCourses = new CourseBlock[0];
-        private SwapCourseBlock[] S_courses; //Courses you searched up
+        private SwapCourseBlock[] S_courses = new SwapCourseBlock[0]; //Courses you searched up
         private string swapValueSelected; //course name of the courses you're going to swap out of from SCourses
+        private string switchValueSelected;
         private int swapIndex; //index of the selected course you're going to swap out of from SCourses
         private CourseBlock[] SCourses = new CourseBlock[0];
+        private CourseBlock[] SelectedCourses = new CourseBlock[0];
+        private CourseBlock toSwitch = null;
         private CourseBlock currSelected;
         private byte clear = 255;
         private byte stColor1 = 193;
@@ -36,16 +38,18 @@ namespace WpfApplication1
         private byte stColor3 = 236;
 
 
-
         public MainWindow()
         {
             InitializeComponent();
             schedule = new Schedule(this);
+          
             scheduleCanvas.Children.Add(schedule);
             Canvas.SetLeft(schedule, 10);
             Canvas.SetTop(schedule, 40);
+
             fileReader();
             populateSwap();
+            populateSwitch();
         }
 
         private void fileReader()
@@ -80,9 +84,18 @@ namespace WpfApplication1
             }
         }
 
+        //populate the switch tutorial combo box
         private void populateSwitch()
         {
-
+            if (SCourses == null) { return; };
+            switch_combo.Items.Clear();
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                if (SCourses[i].getType() != "Lec")
+                {
+                    switch_combo.Items.Add(SCourses[i].getCourse() + SCourses[i].getCourseNum() + " " + SCourses[i].getCourseName());
+                }
+            }
         }
 
         //Populate the swap combobox dropdown thing
@@ -92,17 +105,14 @@ namespace WpfApplication1
             Swap_combo.Items.Clear();
             for (int i = 0; i < SCourses.Length; i++)
             {
+                if(SCourses[i].getType() == "Lec")
+                {
                 Swap_combo.Items.Add(SCourses[i].getCourse() + SCourses[i].getCourseNum() + " " + SCourses[i].getCourseName());
+                }
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-
-        //Swap selection thing
+        //Swap Combo Box
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             swapValueSelected = Swap_combo.Text;
@@ -122,30 +132,49 @@ namespace WpfApplication1
                 }
             }
         }
-        //Swap Combo box
-        /*
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (SCourses == null) { return; }
-            for (int i = 0; i < SCourses.Length; i++)
-            {
-                Swap_combo.Items.Add(SCourses[i].getCourse()+" "+SCourses[i].getCourseNum()+" "+SCourses[i].getCourseName());
-            }
-        }
-        */
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        //Switch Tutorial Button
+        //SWITCH BUTTON
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
+            //Find the course you want to switch into
+            int i = -1;
+            int j = 0;
+            bool somethingSelected = false;
 
+            while (j < S_courses.Length)
+            {
+                i++;
+                if (S_courses[i].SwapSelector.Opacity > 0)
+                {
+                    j = S_courses.Length;
+                    somethingSelected = true;
+                }
+                j++;
+            }
+
+            if(somethingSelected)
+            {
+            CourseBlock[] temp = new CourseBlock[0];
+            for (int k = 0; k < SCourses.Length; k++)
+            {
+                if(toSwitch != SCourses[k])
+                {
+                    Array.Resize(ref temp, temp.Length + 1);
+                    temp[temp.Length - 1] = SCourses[k];
+                }
+            }
+            this.SCourses = temp;
+
+            Array.Resize(ref SCourses, SCourses.Length + 1);
+            SCourses[SCourses.Length - 1] = new CourseBlock(S_courses[i].getSeats(), S_courses[i].getWaitSeat(), S_courses[i].getProf(),
+                                                            S_courses[i].getCourse(), S_courses[i].getCourseName(), S_courses[i].getDays(),
+                                                            S_courses[i].getTimes(), S_courses[i].getType(), S_courses[i].getDetails(),
+                                                            S_courses[i].getCourseNum(), this);
+            }
+            schedule.Update(clear,clear,clear);
+            schedule.setScheduledCourses(SCourses);
+            schedule.Update(stColor1,stColor2,stColor3);
         }
-
-        
 
         private void OnMouseMove(object sender, MouseEventArgs e)
         {
@@ -182,8 +211,8 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if (allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum 
-                        || allCourses[i].getCourseNum() / 10 == courseNum)
+                    if ((allCourses[i].getCourseNum()== courseNum || allCourses[i].getCourseNum() / 100 == courseNum 
+                        || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
                     {
                         j++;
                     }
@@ -195,18 +224,18 @@ namespace WpfApplication1
             {
                 if (allCourses[i].getCourse() == course)
                 {
-                    if (allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
+                    if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) && !(allCourses[i].getisWaitlised()))
                     {
                         CourseBlock temp = new CourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
                                                             allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(),
                                                             allCourses[i].getCourseNum(), this);
-                        if (allCourses[i].getisWaitlised())
-                        {
-                            temp.triangle.Visibility = System.Windows.Visibility.Visible;
-                            temp.square.Visibility = System.Windows.Visibility.Hidden;
-                            temp.WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
-                        }
+                        //if (allCourses[i].getisWaitlised())
+                        //{
+                        //    temp.triangle.Visibility = System.Windows.Visibility.Visible;
+                        //    temp.square.Visibility = System.Windows.Visibility.Hidden;
+                        //    temp.WaitlistBtn.Visibility = System.Windows.Visibility.Hidden;
+                        //}
                         S_courses[k] = temp;
                         k++;
                     }
@@ -249,13 +278,6 @@ namespace WpfApplication1
 
         }
 
-        // Search Combo box in search tab
-        private void ComboBox_SelectionChanged_1(object sender, SelectionChangedEventArgs e)
-        {
-            
-        }
-
-
         public void uncheckSwap(SwapCourseBlock[] S_courses)
         {
             int i = 0;
@@ -280,7 +302,7 @@ namespace WpfApplication1
                 if (allCourses[i].getCourse() == course)
                 {
                     if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum)
-                         && allCourses[i].getType() == "Lec")
+                         && allCourses[i].getType() == "Lec" && !(allCourses[i].getisWaitlised()))
                     {
                         j++;
                     }
@@ -294,7 +316,7 @@ namespace WpfApplication1
                 {
                    
                     if ((allCourses[i].getCourseNum() == courseNum || allCourses[i].getCourseNum() / 100 == courseNum || allCourses[i].getCourseNum() / 10 == courseNum) //He's checking for 500, 50, 5
-                        && allCourses[i].getType() == "Lec") 
+                        && allCourses[i].getType() == "Lec" && !(allCourses[i].getisWaitlised())) 
                     {
                         SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
                                                             allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
@@ -322,7 +344,6 @@ namespace WpfApplication1
 
         }
 
-
         //SWAP BUTTON
         private void Button_Click_5(object sender, RoutedEventArgs e)
         {
@@ -346,15 +367,36 @@ namespace WpfApplication1
             {
                 int k = 0;
                 bool conflict = false;
-                while (k < SCourses.Length)
+
+                // Check if full first
+                if (S_courses[i].getSeats() == 100)
                 {
-                    if (SCourses[k].getTimes() == S_courses[i].getTimes() && SCourses[k].getCourseName() != swapValueSelected)
-                    {
-                        conflict = true;
-                       // errors message;
-                    }
-                    k++;
+                    // Full error message
+                    conflict = true;
+                    MessageBox.Show("Sorry, the class you are trying to Swap into is already full.");
                 }
+                else
+                {
+                    while (k < SCourses.Length)
+                    {
+                            // Check for time Conflicts
+                            int[] courseTimes = SCourses[k].getTimes();
+                            int[] currCourseTimes = S_courses[i].getTimes();
+
+                                if (courseTimes[0] < currCourseTimes[1] && courseTimes[0] >= currCourseTimes[0] && SCourses[k].getCourseName() != swapValueSelected)
+                                {
+                                    conflict = true;
+                                    MessageBox.Show("Error. Time Conflict detected with " + SCourses[k].getCourse() + " " + SCourses[k].getCourseNum() + " " +SCourses[k].getCourseName());
+                                }
+                                else if (courseTimes[1] > currCourseTimes[0] && courseTimes[1] <= currCourseTimes[1] && SCourses[k].getCourseName() != swapValueSelected)
+                                {
+                                    conflict = true;
+                                    MessageBox.Show("Error. Time Conflict detected with " + SCourses[k].getCourse() + " " + SCourses[k].getCourseNum() + " " + SCourses[k].getCourseName());
+                                }                  
+                        k++;
+                    }
+                }
+
                 if (conflict == false)
                 {
                     //SCourses[swapIndex] = S_courses[i];
@@ -366,17 +408,17 @@ namespace WpfApplication1
                             SCourses[swapIndex] = allCourses[k];
                             schedule.Update(clear, clear, clear);
                             populateSwap();
+                            //populateSwitch();
                             schedule.setScheduledCourses(SCourses);
                             schedule.Update(stColor1, stColor2, stColor3);
-                           // populateSwap();
                             k = allCourses.Length;
                         }
                         k++;
                     }
                 }
             }
+            SwapCourses.Children.Clear();
         }
-
 
         private void OnMouseUp(object sender, MouseButtonEventArgs e)
         {
@@ -395,6 +437,7 @@ namespace WpfApplication1
                     SCourses[SCourses.Length - 1] = toDrag;
                     schedule.Update(stColor1,stColor2,stColor3);
                     populateSwap();
+                    populateSwitch();
 
                     // Set toDrag to null 
                     this.toDrag = null;
@@ -421,11 +464,6 @@ namespace WpfApplication1
             
         }
 
-        public void setOnSchedule(bool onSchedule)
-        {
-            this.mouseOnSchedule = onSchedule;
-        }
-
         private void OnMouseDown(object sender, MouseButtonEventArgs e)
         {
             if(e.Handled == true) { return; }
@@ -444,12 +482,74 @@ namespace WpfApplication1
             schedule.setSelected(null);
             this.SCourses = schedule.getScheduledCourses();
             populateSwap();
+            populateSwitch();
             schedule.Update(stColor1, stColor2, stColor3);
         }
 
         //ENROLL BUTTON
         private void Button_Click_7(object sender, RoutedEventArgs e)
         {
+            enrolledCanvas.Visibility = Visibility.Visible;
+            enrolledTextBox.Text = "You Have Successfully Enrolled!";
+        }
+
+        //For the Error Casses
+        private void OnKeyDown(object sender, KeyEventArgs e)
+        {
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.F))
+            {
+                errorCanvas.Visibility = Visibility.Visible;
+                errorTextBox.Text = SCourses[0].getCourse() + " " + SCourses[0].getCourseNum() + " " + SCourses[0].getCourseName() + " has reached it's capacity, Please drop it from your schedule and re-enroll.";
+                schedule.makeError(SCourses[0]);
+            }
+            if ((Keyboard.Modifiers == ModifierKeys.Control) && (e.Key == Key.P)) 
+            {
+                errorCanvas.Visibility = Visibility.Visible;
+                schedule.makeError(SCourses[0]);
+                errorTextBox.Text = "You do not have the required prerequisites to enroll in " + SCourses[0].getCourse() + " " + SCourses[0].getCourseNum() + " " + SCourses[0].getCourseName() +", Please drop this course and re-enroll.";
+            }
+        }
+
+        // X button on the Error Handler
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            errorCanvas.Visibility = Visibility.Hidden;
+            enrolledCanvas.Visibility = Visibility.Hidden;
+        }
+
+        // Switch tutorial Combo box
+        private void ComboBox_SelectionChanged_2(object sender, SelectionChangedEventArgs e)
+        {
+            if (!IsLoaded) return;
+
+            switchValueSelected = (sender as ComboBox).SelectedItem as string;
+            for (int i = 0; i < SCourses.Length; i++)
+            {
+                if (switchValueSelected == (SCourses[i].getCourse() + SCourses[i].getCourseNum() + " " + SCourses[i].getCourseName()))
+                {
+                    toSwitch = SCourses[i];
+                    i = SCourses.Length;
+                }
+            }
+
+            if (toSwitch != null)
+            {
+                int numToSearch = toSwitch.getCourseNum();
+                for (int i = 0; i < allCourses.Length; i++)
+                {
+                    if (numToSearch == allCourses[i].getCourseNum() && toSwitch != allCourses[i] && allCourses[i].getType() != "Lec")
+                    {
+                        SwapCourseBlock temp = new SwapCourseBlock(allCourses[i].getSeats(), allCourses[i].getWaitSeat(), allCourses[i].getProf(),
+                                                            allCourses[i].getCourse(), allCourses[i].getCourseName(), allCourses[i].getDays(),
+                                                            allCourses[i].getTimes(), allCourses[i].getType(), allCourses[i].getDetails(),
+                                                            allCourses[i].getCourseNum(), this, S_courses);
+                        switchStack.Children.Add(temp);
+                        Array.Resize(ref S_courses, S_courses.Length + 1);
+                        S_courses[S_courses.Length - 1] = temp;
+                        
+                    }
+                }
+            }
 
         }
     }
